@@ -1,0 +1,102 @@
+\chapter{Calibration}
+\label{sec:calibration}
+The design described in the previous section was built. This section describes the characterisation and calibration of the device. This is carried out to determine whether the requirements postulated in the introduction were met. The comparison of the results with the requirements will be in the last part of this chapter.
+
+Ideally, the position monitor system would be calibrated by placing it at a known position, near an electron beam source and varying the relative positions while recording the response. There are a number of ways in which this approach is not feasible. 
+Firstly, the position of an electron beam has to be measured by a secondary system, so another position monitor would have to be present to calibrate the measurements. As the energy density of this electron beam is so high, typical intercepting methods are not possible. Non-intercepting methods are generally only viable for modulated (RF) beams. 
+Secondly, the relative positions would have to be varied. To get a good calibration, a range of possible positions would have to be tested and the response of the position monitor system must be recorded in order to be able to extrapolate useful information when encountering an unknown system. This requires a translation solution in the lateral direction. Thirdly, the entire system, now consisting of 2 beam position monitors, a translation stage and an electron beam, would have to fit inside a vacuum chamber. This means it has to be ultra-high vacuum compatible, compact, rigid and accurate up to the accuracy that is required of the position monitor, in our case \SI{100}{\micro\meter}.
+
+All the above is challenging, but possible. However, this would require an exact copy of our electron beam source and a larger vacuum chamber than is available at this time. 
+No guarantee can be given that the calibration electron gun has the same characteristics such as beam diameter, divergence, charge density as the electron gun that is to be aligned.
+Therefore, the consideration was made not to use an electron gun to calibrate this beam position monitor. Instead, the electron beam was simulated using a brass rod of the same diameter. 
+The beam position monitor is translated laterally compared to the brass rod and the response is recorded. Using this method, the characterisation and calibration has been done completely outside the vacuum with more flexibility to vary electron beam parameters while keeping a good approximation of the real system. 
+
+In this section, the typical characteristics of the signals from the sensor are considered and the method of signal acquisition is described. Then, the calibration steps are presented, followed by the results.
+
+\section{Signal characteristics}
+\label{sec:calibration/signal}
+The sensor plates are brought to a certain voltage by the presence of the electron beam, but if the voltage is measured, the charge will flow out from the plate to ground (or the other way around, depending on your definitions) through the sensor\red{citation needed}. Normally, the signal source has either an isolated output \red{high output impedance? Low? What does isolated output mean?} or a large capacity for charge so the signal is not lost through the sensor. In our case, the bare plates have a capacity in the order of \SI{10}{\pico\farad}. To realize how little this is, a typical \SI{50}{\ohm} input would completely drain this in typically \SI{1.5}{\nano\second}.
+
+To counteract this, an isolating circuit was added close to the sensor with an input impedance of $10^{12}\,\Omega$. For more information on this circuit, see \ref{sec:design/circuit}. Using this system, the RC-time becomes 1ms. This is workable, but still significant. The signal is therefore suspected to show an exponential decay over time as the charge leaks away. Therefore, the signal should be measured as close to the beam arrival time ($t=0$) as possible.
+
+The sudden onset of the beam current induces a large change in the created magnetic field, in turn creating a short-lived current near $t=0$ and near the end of the electron beam ($t=\tau_b$). This has not been taken into account in the theory as it is not the method this position monitor has been built to use. However, as the isolation circuits have limited bandwidths, The sudden impulse creates an oscillation in the output signal.
+Another characteristic is the offset caused by the electronics. The amplifier that was used has no internal balancing mechanism. This causes the output signal to have a non-zero value ($U_{offset}$)when the input signal is zero. This could be counteracted by using the offset pins on the LT-1122 \cite{LT1122} but this would introduce eight more cables to run through the system and this option was omitted. The offset is neglected during signal analysis.
+
+\begin{figure}[H]
+\centering
+%\input{Pictures/signaltikz2}
+\includegraphics[width=300pt]{signalex.pdf}
+\caption{\red{CHANGE X-axis to have beam arrive at $t=0$}A sketch showing the signal characteristics; non-zero voltage at $t<0$, then rapidly fluctuating signal followed by exponential decay and a sudden drop at $t=\tau_b$ (not to scale).}
+\label{fig:signalex}
+\end{figure}
+
+\section{Calibration method}
+In order to verify the expected results with reality, the following calibration method was devised. 
+A metal rod was used to simulate the electron beam. It was brought to a voltage equal to the beam potential $U_b$ described in equation \ref{eq:vbeamrho} and the current was varied to accommodate a range of currents expected from the electron gun. Although the current has no direct effect on the measured values, the sudden change in current creates a large induction that introduces noise in the measurement. Other position monitor designs \textcolor{red}{REF!} rely on this effect specifically as their method of operation. 
+The beam potential $U_b$ was also varied to determine any dependencies of the position monitor's behaviour on the charge density inside. Then, the response of the four plates was measured for a range of positions of the position monitor, both directly with a cable attached and using the circuit that was designed.
+
+\subsection{Translation}
+\label{sec:calibration/translation}
+In this setup, the beam position monitor (BPM) was held by a metal holder that was firmly placed on a 2-axis translation stage. This allowed the monitor to be moved with up to \SI{10}{\micro\meter} accuracy with respect to the rod. The rod was kept in a fixed position.
+The BPM was secured by two sets of four screws, allowing control over the rotation of the body. The BPM could be moved until the rod was touching the isolation of the sensing plates. Moving it to the extremes\footnote{As the rod could bend, the extremes were taken to be ``the point at which changing the position no longer changed the output of the plates''.} allowed the rod to be positioned in the center: 
+The BPM was moved to the extremes in the Y-direction, the positions were noted and the average of the two positions would be taken as the center. This was repeated for the X-direction and this process was repeated until the values converged. This gave a measurement of the center position with down to 150$\mu$m precision.
+\begin{figure}[H]
+\centering
+\input{Pictures/setuptikz}
+\caption{A schematic picture of the translation setup with Beam Position Monitor (BPM)}
+\label{fig:schem_translation}
+\end{figure}
+
+\subsection{Rod control}
+As this is a simulation of an electron beam from a source that was not used for an extended time, the actual values of electron current, charge density etc. are not exactly known. Therefore the calibration method is designed to simulate a range of possible values for these variables. 
+The simulation of the electron beam is achieved using the schematic seen in figure \ref{fig:circuitsetup}. 
+
+\begin{figure}[h]
+\centering
+\input{Pictures/electrictikz}
+\caption{A schematic showing the electrical circuit controlling the rod}
+\label{fig:circuitsetup}
+\end{figure}
+
+The potential of the beam, $U_b$, as given in equation \ref{eq:vbeamrho} was set by changing $U_\text{set}$ to that value, typically between 600\,V and 1200\,V. The capacitor $C$ was placed to even out the current drawn from the power supply, having a resistor $R_\text{charge}$ to limit the charging current. The capacitor used was \SI{1000}{\micro\farad}, the charging resistor was \SI{14}{\kilo\ohm}.
+The part labelled ``rod'' is a brass cylinder used to simulate the electron beam. The radius was chosen to correspond to the electron beam radius ($r_b$, \mm{1}), the length (20\,cm) was chosen for construction ease.
+The resistor $R$ that connects the rod to ground was chosen to achieve currents in the same range as the electron current. The value for this resistor was between 300 and 1200 $\Omega$, depending on the desired current and voltage to be simulated. The resistance of the rod (about 12.6 m$\Omega$)can be neglected.
+The switch was a Behlke High-voltage switch, rated up to 25kV.
+
+\section{Results}
+
+\subsection{Linearity}
+Firstly, a measurement was carried out to determine the extent of the assumptions made in the theoretical model. The most important assumption was that the displacement $d$ was small. The coaxial approximation and the Taylor approximation were both depending on this. The displacement was increased as much as the set-up allowed and the response from the sensors was recorded at various positions. The displacement was then calculated without normalization. 
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{linearitymeasref.pdf}
+\caption{The measured displacement compared to the set position. A linear fit was made to extract the constant of proportionality.}
+\label{fig:linearitymeas}
+\end{figure}
+
+As can be seen when comparing figures \ref{fig:linearitymeas} and \ref{fig:measd},the range where the sensor response is linear is found to be significantly larger than expected. This can be explained by the fact that two approximations are breaking down. The higher order terms of the Taylor approximation in equation \ref{eq:linearstep3} no longer are negligible. Taking these terms into account would negatively influence the signal output according to figure \ref{fig:measd}. What has not been incorporated in that figure is the breakdown of the coaxial approximation. In the extreme case of the beam being very close to one of the plates, the coaxial approximation assumes there are 2 small coaxial cylinder surfaces. In reality, there are a cylindrical part next to a nearly straight wall. The latter has a higher capacitance, so $C_{bs}$ is higher than expected. According to equation \ref{eq:vplatec}, increasing $C_{bs}$ results in an increase in the potential response. When considering figure \ref{fig:linearitymeas} it can be concluded that the decrease of the plate potential due to the higher order terms in the Taylor expansion and the increase of the potential due to the increased capacitance cancel each other out almost completely along the measurable range.
+
+\subsection{Numerical results}
+The BPM was calibrated for 9 different combinations of beam voltage and current. Each calibration consisted of measurements of the plate potential at 81 different positions. These 81 points correspond to a matrix of 9 by 9 positions in a 1.4x1.4 mm square of positions relative to the electron beam. Close to the center a small step size of \mm{0.1} was chosen for high accuracy. The outer two series of steps were \mm{0.25} in order to cover a larger distance.
+At each position, the signals from all four plates were measured by averaging the portion of the signal after the initial peak but before the onset of the exponential decay. The difference-over-sum was calculated and the result is shown in figure \ref{fig:difovsum}.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=300pt]{difovsum.pdf}
+ \caption{A graph showing the (non-normalized) difference-over-sum of two opposite plate potentials at various positions.}
+ \label{fig:difovsum}
+\end{figure}
+
+The linear dependence of the difference-over-sum on the position can readily be seen in figure \ref{fig:difovsum}. To obtain a normalized value, the constant of proportionality (CoP) was derived by fitting a linear surface.
+A number of measurements were carried out to check if the CoP depends on different beam parameters such as the charge density (through the beam voltage) or total beam current. Although this is not seen in the theoretical model, a dependence was found on the beam voltage $U_b$.
+\red{This is thought to be caused by the method of measuring the plate voltage. The actual voltage is too noisy to measure, so the signal is measured later in time by averaging over an interval. The signal decays over time so the average is lower in voltage. This voltage drop is due to exponential decay (a capacitor discharging) and so, the higher the signal originally was, the more it drops.}
+
+When measuring, the sum of the signals is used to determine the beam voltage. In this case, zero displacement is assumed. The CoP's for different beam voltages is then looked up and the correct value is interpolated. This value for the CoP is then used to determine the displacement of the beam.
+
+In figure \ref{fig:calfig}, the red circles are measured positions and the blue ones are set positions. The center position was determined as described in section \ref{sec:calibration/translation}. The calibration was carried out using a set of 9 measurements like the one shown and finding the parameters that minimized the errors.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=300pt]{calibrationfig.pdf}
+\caption{The set (blue) and measured (red) positions after calibration.}
+\label{fig:calfig}
+\end{figure}

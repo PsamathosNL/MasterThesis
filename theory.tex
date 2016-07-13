@@ -1,0 +1,248 @@
+\chapter{Methods of Measurement}
+\label{sec:theory}
+In this chapter, the theory of detecting an electron beam position using its (quasi-) static coulomb field on capacitive plates is presented. Firstly, the coulomb field of a charge distribution inside a coaxial metallic tube is calculated. Then, the theory of probing this field is explained followed by a quantitative description of how this can be used to detect the position of an electron beam.
+%------------------------------------------------
+
+\section{Potential field of an electron beam}
+Any static charge distribution has an electric field that can be described by \cite{GriffithsEM}
+\begin{equation}
+\textbf{E}(\mathbf{r}) = \frac{1}{4\pi\epsilon_0}\int_\mathcal{V}\frac{\rho(\mathbf{r}^\prime)}{\rcurs^2}\hat{\brcurs}d\tau^\prime
+\end{equation}
+where E is the electric field strength, $\mathbf{r}$ is the position vector where the field is measured, $\epsilon_0$ is the permeability of the vacuum, $\rho(\mathbf{r^\prime})$ is the charge density at position $\mathbf{r^\prime}$, \brcurs \hspace{2pt} is the vector from $\mathbf{r^\prime}$ to $\mathbf{r}$ and $d\tau$ is an infinitesimal volume element. The integral is technically evaluated over all space, but since $\rho$ will be zero where no charge is present, we can confine the integral to the volume $\mathcal{V}$ where charges are present.
+The corresponding potential distribution is given by 
+\begin{equation}
+\nabla^2V(\mathbf{r})=-\frac{\rho}{\epsilon_0}
+\end{equation}
+%V(\mathbf{r})=\frac{-1}{4\pi\epsilon_0}\int\frac{\rho(\mathbf{r}^\prime)}{\rcurs}d\tau, incorrect 
+where \textit{V} is the potential. However, a reference point is required to integrate from in order to get a numerical value for \textit{V}.
+
+As charge distribution we assume the electron beam to be a homogeneous rod of radius $r_b$, with charge density $\rho_b$. For a constant velocity $v$, $\rho_b$ is given by:
+\begin{equation}
+\label{eq:rho1}
+\rho_b = \frac{I}{\pi r_b^2v}
+\end{equation}
+where $I$ is the current of the electron beam, $r_b$ is the beam radius and $v$ is the beam velocity.
+If the speeds are not relativistic ($v\ll c$), the speed can be expressed in the potential over the anode and cathode as
+\begin{displaymath}
+v = \sqrt{\frac{2eU_{acc}}{m_e}}
+\end{displaymath}
+where $U_{acc}$ is the acceleration potential in volts, $e$ is the charge of an electron ($1.60\cdot10^{-19}$ C) and $m_e$ is the rest mass of an electron ($9.11\cdot 10^{-31}$). The velocity is given in m/s. Inserting this into equation \ref{eq:rho1} yields:
+\begin{equation}
+\rho = \frac{I}{\pi r_b^2} \sqrt{\frac{m_e}{2eU_{acc}}}
+\end{equation}
+
+The electron beam is enclosed by a grounded conducting tube at a distance R from the center. This will be our reference potential ($U(R) = 0$).
+
+From here on, $z$ will be used to denote the distance in the propagation direction of the electron beam. $r$ is the distance from the center of the beam in the plane perpendicular to $z$ and $\phi$ is the angle in this plane.\footnote{Do note I am using $r$ to denote the distance to the z-axis (a scalar) and \textbf{r} to denote a position (a vector) They are not always interchangeable.}
+
+To get to the potential distribution, we apply Gauss' law \cite{GriffithsEM}. As a surface we take a cylinder enclosing the electron beam (that has a homogeneous charge density $\rho$), with length $l$ and radius $r$.
+%As a surface we take a cylinder enclosing the electron beam (that has charge-per-length $\lambda$), with length $l$ and radius $r$.
+\begin{align}
+\int\textbf{E}\cdot d\mathbf{a} &= E\cdot2\pi r l = \frac{Q_{enc}}{\epsilon_0} = \rho \frac{l\pi r_b^2}{\epsilon_0} \\
+\mathbf{E}(\mathbf{r}) &= \rho \frac{r_b^2}{2\epsilon_0r}\hat{\mathbf{r}} \\
+\end{align}
+Using the integral definition of the electric potential:
+\begin{align}
+U(r_b)-U(R) &= -\int_R^{r_b} \mathbf{E}\cdot d\mathbf{l} \nonumber \\
+&= - \rho \frac{r_b^2}{2\epsilon_0}  \int_R^{r_b} \frac{1}{r} dr
+\end{align}
+From this it is derived that the potential at the beam edge ($U_b$) is given by:
+\begin{equation}
+\label{eq:vbeamrho}
+U_b = - \rho \frac{r_b^2}{2\epsilon_0} \log\left(\frac{R}{r_b}\right)
+\end{equation}
+or in other terms
+\begin{equation}
+\label{eq:vbeamI}
+U_b=\frac{I}{2\pi\epsilon_0 c}\sqrt{\frac{m_e}{2U_{acc}}}\log\left(\frac{R}{r_b}\right)
+\end{equation}
+
+\begin{figure}
+\centering
+\input{Pictures/geometrytikz}
+\caption{Geometry of the theoretical system.}
+\label{fig:theorygeometry}
+\end{figure}
+
+\section{The sensing mechanism}
+If we first assume an infinitesimally thin metal plate, curved such that it coincides with an equipotential line. The plate would normally even out the potential as the free charges inside it can move freely to nullify any differences in potential across the metal. However, as the plate already is at an equipotential and it is thin, the effect of the plate on the field can be neglected. In this case, the potential of the plate will be the potential of the equipotential line it coincides with. 
+This potential can be measured, but the system must be known in more detail in order to correctly do this.
+As electrons inside the beam can (in a quasi-static case) move freely under influence of external fields, we can treat the beam as a conducting rod that is lifted to the beam potential $U_b$.\textcolor{red}{REF?} This way, there are two ``metal'' surfaces so there is a capacitive connection between the beam and the sensor plates. The plates themselves are a distance $b$ from the grounded tube the beam is travelling through, so these have a capacitive connection to ground. The equivalent circuit diagram corresponding to a rigid electron beam inside a hollow metallic tube with a thin cylindrical sensing plate is given in figure \ref{fig:capacities}.
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american voltages]
+\draw
+  (2,0) to [short] (0,0)
+  to [open, l^=$U_b$, o-o] (0,2)
+  to [short, o-] (2,2)
+  to [C, l_=$C_{bs}$] (2,1)
+  to [C, l_=$C_g$] (2,0)
+  
+  (2,0) node [ground] {}
+  
+  (2,1) to [short] (3,1)
+  to [open, l^=$U_s$, o-o] (3,0)
+  to [short] (2,0);
+\end{circuitikz}
+\caption{Electrical circuit diagram equivalent}
+\label{fig:capacities}
+\end{figure}
+As the sensor plate is not grounded, the charge enclosed by the sensor plate is not screened by the plate. If the metals would be ideal, the plate would have an induced dipole, moving the charge that's on the ``beam''-side to the ``ground'' side. If this is the case, the two capacitors (beam to sensor and sensor to ground) would have an equal charge, but different capacitance so different potential differences. We assume for this derivation that our metals are ideal. 
+To derive the sensor plate potential ($U_s$), we start by stating that the potential differences over the two capacities in figure \ref{fig:capacities} add up to $U_b$.
+\begin{equation}
+U_b = U_s + U_{bs}
+\label{eq:potentialsum}
+\end{equation}
+It has been noted that the potential difference over the two capacitors is different because their capacitance is different. As the charges are equal, the ratio is given by
+\begin{align*}
+Q &= C\cdot U = C_{bs} U_{bs} = C_g U_{sg} \\
+U_{bs} &= U_s\frac{C_g}{C_{bs}} \\
+\end{align*}
+Entering this into equation \ref{eq:potentialsum},
+\begin{align*}
+U_b &= U_s \left(1+ \frac{C_g}{C_{bs}} \right) \\
+U_s &= U_b \frac{1}{1+\frac{C_g}{C_{bs}}} 
+\end{align*}
+Rewriting this yields the more friendly form:
+\begin{equation}
+U_s = U_b \frac{C_{bs}}{C_{bs}+C_g}
+\label{eq:vplatec}
+\end{equation}
+where the indices $b$, $g$ and $bs$ are for the beam-to-ground, sensor-to-ground and beam-to-sensor respectively. $U_s$ is the potential of the sensor plate, $Q$ is the charge induced on the plate and $C_g$ and $C_{bs}$ are the capacities between the beam and the sensor plate and between the sensor plate and ground, respectively.
+
+This derivation goes for any plate coinciding with an equipotential surface placed in between a charge (distribution) and a grounded metal surface. The capacitance to the beam and ground can be varied. 
+If there are multiple identical plates around the beam, the capacitance of the plate to the beam differs when the beam is not centered. The pickup design presented in this report relies on this principle.
+The geometry seen in figure \ref{fig:geofrontview} was chosen to maximize the capacitance dependency on the beam position while keeping a near-analytical system.
+\begin{figure}[hb!]
+\centering
+%\includegraphics[scale=.4]{frontview.PNG}
+\input{Pictures/3dviewtikz}
+\caption{geometry including sensor plate}
+\label{fig:geofrontview}
+\end{figure}
+To know the output voltage of such a system, the capacities must be calculated.
+First, consider the capacity of two concentric, cylindrical metal surfaces of length $l$, the outer one of radius $b$, the inner one of radius $a$. The capacity is then given by\cite{GriffithsEM}:
+\begin{equation}
+C = \frac{2\pi\epsilon_0l}{\ln \left(\frac{b}{a} \right)}
+\label{eq:capconc}
+\end{equation}
+If now, instead of using a full circle, two half-circle surface are considered, they should have only half the capacity. This is of course neglecting the edges of the surfaces, but these edges are close to each other, effectively negating these effects. In the following analysis, the surfaces are considered to be almost-touching (neglecting edge effects) and to span an angle $\theta$ as can be seen in Figure \ref{fig:geofrontview}.
+We may calculate both the capacitance between the beam and the plates, $C_{bs}$ and between the plates and ground, $C_g$ in this way. In this case, naming the distance between the beam center and the plate $r_s$ and naming the radius of the grounded body $R$, the following equations can be made:
+\begin{align}
+C_{bs} &= \theta \frac{\epsilon_0l}{\ln\left(\frac{r_s}{r_b}\right)} \label{eq:capbeam}\\
+C_g &= \theta \frac{\epsilon_0l}{\ln\left(\frac{R}{r_s}\right)}
+\label{eq:capplate}
+\end{align}
+Here, $\theta$ is the angle covered by the sensor plates in the transverse plane. It can be seen that for a full circle angle, the capacitance reduces to the one presented in equation \ref{eq:capconc}.
+Using equations \ref{eq:capplate} and \ref{eq:capbeam}, we can rewrite equation \ref{eq:vplatec} as a function of design parameters;
+\begin{equation}
+U_s = U_b \left(1-\frac{\ln\left(\frac{r_s}{r_b}\right)}{\ln\left(\frac{r_s}{r_b}\right)+\ln\left(\frac{R}{r_s}\right)} \right)
+\end{equation}
+%U_s = U_b \frac{\theta\epsilon_0l \ln^{-1}\left(\frac{r_s}{r_b}\right)}{\theta\epsilon_0l \ln^{-1}\left(\frac{r_s}{r_b}\right)+\theta\epsilon_0l \ln^{-1}\left(\frac{R}{r_s}\right)}
+However, there are a number of other components that have been neglected in this case. In the real system, there will be a cable attached to the sensing plate, adding to the capacitance. Also, any electronics connected to it would also add some capacitance. To take this into account, we add some ``parasitic'' capacitance $C_{par}$ to the sensor's capacitance to ground.
+\begin{equation*}
+C_g^\prime = C_g + C_{par} 
+\end{equation*}
+Exchanging the $C_g$ for $C_g^\prime$ in equation \ref{eq:vplatec}, the correct way for calculating the response is now a combination of equations \ref{eq:vplatec}, \ref{eq:capbeam} and \ref{eq:capplate}.
+
+\subsection{Deviating from coaxial symmetry}
+The plates are fixed in position compared to the grounded tube surrounding them, making the capacity to ground $C_g$ a fixed value, even if the beam changes position. If the beam moves out of the center, only the value for $C_{bs}$ will change.
+To calculate the potential response of the sensor plates to different beam positions, a model of this capacitance $C_{bs}$ must be constructed. 
+In the following derivation, the \textit{coaxial approximation} will be kept, but the radius of the sensing plates will be replaced for the distance between the beam center and the plate's inner surface. For a beam that is displaced from the center a distance $d$ upwards, this yiels:
+\begin{align}
+C_1 &= \theta \frac{\epsilon_0l}{\ln\left(\frac{r_s-d}{r_b}\right)} \\
+C_2 &= \theta \frac{\epsilon_0l}{\ln\left(\frac{r_s+d}{r_b}\right)}
+\end{align}
+where $C_1$ and $C_2$ are the upper and lower plates' capacitance to the beam respectively.\footnote{The $C_{bs}$ will now be replaced with $C_n$ where $n$ is the number of the sensor plate, counted in the order ``up'', ``down'', ``left'' and ``right'', when looking \textit{toward} the electron beam source. The same numbers will be used for the sensor plate potential response, $U_n$.}
+We then obtain (using a geometry constant $a=\theta\epsilon_0l$):
+\begin{align}
+U_1 &= U_b\frac{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}+C_g^\prime} \\
+U_2 &= U_b\frac{\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}+C_g^\prime} \label{eq:plateresponse}
+\end{align}
+In figure \ref{fig:plateresponse} the response of such a system is shown as a function of the deviation of the electron beam position from the center.
+\begin{figure}[hb!]
+\centering
+\includegraphics[width = 10cm]{plateresponse2v3.pdf}
+\caption{Potential response of opposite sensor plates}
+\label{fig:plateresponse}
+\end{figure}
+
+\newpage
+\section{Signal processing and Linearisation}
+The position of the beam center must be measured using the output of the plates. The plate geometry was chosen such that the effect of the displacement in the `x'-direction is only visible in the difference in output of the horizontally spread (left-and-right) plates while having a minimal effect on the output of the vertically spread plates. This way, by analysing the difference in output of opposite plates, the position of the beam between them can be measured. Using two perpendicular sets of plates then gives the beam center position in 2 dimensions. 
+To readily derive the position of the beam center, between two plates, the plate response functions must be combined.
+\subsection{Locating position}
+To start off, only two plates are considered. The position is determined along the axis between the two plates. First, recall equation \ref{eq:vplatec} \footnote{To make the equations more easily readible, I will omit the primes on $C_g$. Starting this section, the parasitic capacitance of cables, electronics etcetera is implicitly included in $C_g$}:
+\begin{equation*}
+U_1=\frac{C_1}{C_1+C_g}
+\end{equation*}
+To combine the signals, the difference of two opposite-plate potentials is divided over their sum. This may seem arbitrary, but it works out nicely in the end.
+\begin{align}
+\frac{U_1-U_2}{U_1+U_2} &= \frac{\frac{C_1}{C_1+C_g}-\frac{C_2}{C_2+C_g}}{\frac{C_1}{C_1+C_g}+\frac{C_2}{C_2+C_g}} \nonumber \\
+&= \frac{C_1(C_2+C_g)-C_2(C_1+C_g)}{C_1(C_2+C_g)+C_2(C_1+C_g)} \nonumber \\
+&= \frac{C_g(C_1-C_2)}{2C_1C_2+C_g(C_1+C_2)} \nonumber  \\
+\text{Assuming that $C_1,C_2 \ll C_g$:} \nonumber \\
+&= \frac{C_1-C_2}{C_1+C_2} \label{eq:linearstep1}
+\end{align}
+This relates the measured values to the capacities. Now to get to the actual displacement we combine equation \ref{eq:linearstep1} with \ref{eq:capplate}. The variable $a$ is the same as in equation \ref{eq:plateresponse}.
+\begin{align}
+\frac{U_1-U_2}{U_1+U_2} &= \frac{C_1-C_2}{C_1+C_2} \nonumber \\
+&= \frac{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}-\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}+\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}} \nonumber \\
+&= \frac{\ln\left(\frac{r_s+d}{r_s-d}\right)}{\ln\left(\frac{(r_s+d)(r_s-d)}{r_b^2}\right)}\label{eq:linearstep2}
+\end{align}
+Taking the Taylor expansion of \ref{eq:linearstep2} yields:
+\begin{equation}
+\frac{U_1-U_2}{U_1+U_2}=\frac{d}{r_s\ln\frac{r_s}{r_b}} + \frac{d^3}{r_s^3}\left(\frac{1}{2\ln\frac{r_s}{r_b}^2}+\frac{1}{3\ln\frac{r_s}{r_b}}\right)+O(\frac{d^5}{r^5}) \label{eq:linearstep3}
+\end{equation}
+The higher order terms scale with $d^n/r_s^n$. So, as long as the displacement $d$ is smaller than $R-s$, the assumption that the higher order terms are negligible is valid. So, for a small displacement $d$ compared to the distance to the sensing plates, the difference-over-sum as seen in \ref{eq:linearstep3} will give a linear response to the deviation of the beam from the center. This can be seen in figure \ref{fig:measd}, where from a displacement of about 1 mm the higher orders start being significant and the calculated displacement is no longer linear. However, around this point the coaxial approximation that was used to determine the calculated response is also no longer valid. Therefore, the exact displacement where the position monitor will stop behaving linearly must be experimentally verified.
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{measureddeviationv3.pdf}
+\caption{The theoretical measurement of displacement using the difference-over-sum, equation \ref{eq:linearstep2}.}
+\label{fig:measd}
+\end{figure}
+In the final system four plates are placed in two pairs, such that they detect the position of the beam along two orthogonal axes. This way the position of the beam can be measured in a 2-dimensional plane.
+
+\subsection{Determining beam voltage}
+Although this measurement setup is apparently capable of determining the beam center position, the beam current is also of interest as this is an indication of the electron source performance.
+The beam voltage as described in equation \ref{eq:vbeamI} is a measure for the beam current and can be determined using the bean position monitor. To determine how, the assumption is firstly made that the beam is centered, $d=0$.
+\begin{align}
+\Sigma_{i=1}^4 U_i &= 4U_1 \nonumber\\
+ &= 4U_b\frac{C_1}{C_1+C_g} \nonumber\\
+ &= 4U_b\frac{a}{a+C_g\ln\left(\frac{r_s}{r_b}\right)}
+\end{align}
+In this equation, all values except $U_b$ are constant. Therefore, with the correct calibration, the beam voltage can readily be retrieved.
+\begin{equation}
+U_b =4U_1\frac{a+C_g\ln\left(\frac{r_s}{r_b}\right)}{2a} \label{eq:beamvoltagemeas}
+\end{equation}
+The calibration is necessary, as the parasitic capacity $C_{par}$ inside $C_g$ is not exactly known.
+
+If we introduce a displacement, the equations become more involved. In order to improve readability, I will take a sidestep and show the Taylor expansion for two opposite plate signals, assuming only a displacement along the axis in between of the two:
+\begin{align}
+U_1 &= U_b \frac{a}{a+C_g\ln\left(\frac{r_s-d}{r_b}\right)} \nonumber \\
+&= U_b \Bigg{(} \frac{a}{a+C_g\ln\left(\frac{r_s}{r_b}\right)} % zeroth taylor term
+- \frac{aC_g}{\left( a+C_g \ln\left(\frac{r_s}{r_b}\right)  \right)^2}\frac{d}{r_s} %first taylor term, note the minus sign
++ \frac{a C_g \left( a + C_g \ln\left( \frac{r_s}{r_b} \right) + 2C_g\right)}{ \left( a+C_g\ln\left(\frac{r_s}{r_b}\right) \right)^3}\frac{d^2}{r_s^2} %the second taylor term.
++O\left(\frac{d^3}{r_s^3}\right) \Bigg{)}\\
+U_2 &= U_b \frac{a}{a+C_g\ln\left(\frac{r_s+d}{r_b}\right)} \nonumber \\
+&= U_b \Bigg{(} \frac{a}{a+C_g\ln\left(\frac{r_s}{r_b}\right)} % zeroth taylor term
++ \frac{aC_g}{\left( a+C_g \ln\left(\frac{r_s}{r_b}\right)  \right)^2}\frac{d}{r_s} %first taylor term, note the minus sign
++ \frac{a C_g \left( a + C_g \ln\left( \frac{r_s}{r_b} \right) + 2C_g\right)}{ \left( a+C_g\ln\left(\frac{r_s}{r_b}\right) \right)^3}\frac{d^2}{r_s^2} %the second taylor term.
++O\left(\frac{d^3}{r_s^3}\right) \Bigg{)}
+\end{align}
+Note the opposite signs on the first order term of the opposite plates. For opposite plates, the odd terms in the Taylor expansion are found to always have opposite signs.
+
+Since the final system has two pairs of plates, all four can be used to determine the beam voltage. By using the sum of the four plates, the odd terms of the expansion fall out:
+\begin{align*}
+\Sigma_{i=1}^4 U_i &= U_b \Sigma_{i=1}^4 \frac{C_i}{C_i+C_g} \nonumber\\
+&= U_b \left[ \frac{a}{a+C_g\ln\left(\frac{r_s-d_y}{r_b} \right)} + \frac{a}{a+C_g\ln\left(\frac{r_s+d_y}{r_b} \right)} + \frac{a}{a+C_g\ln\left(\frac{r_s+d_x}{r_b} \right)} + \frac{a}{a+C_g\ln\left(\frac{r_s-d_x}{r_b} \right)} \right]
+\end{align*}
+The Taylor expansion is taken to the x and y displacements $d_x$ and $d_y$ respectively:
+\begin{align*}
+\Sigma_{i=1}^4 U_i = U_b \Bigg{(}
+  &\frac{4a}{a+C_g\ln\left(\frac{r_s}{r_b} \right)} \\
++ &\frac{2aC_g\left(a+C_g\ln\left(\frac{r_s}{r_b} \right) +2C_g \right)}{\left(a+C_g\ln\left(\frac{r_s}{r_b} \right)\right)^3} \frac{d_x^2}{r_s^2} \\
++ &\frac{2aC_g\left(a+C_g\ln\left(\frac{r_s}{r_b} \right) +2C_g \right)}{\left(a+C_g\ln\left(\frac{r_s}{r_b} \right)\right)^3} \frac{d_y^2}{r_s^2} \\
++ &O\left( \frac{\left| d \right| ^4}{r_s^4} \right)
+\end{align*}
+Where $d^2 = d_x^2 + d_y^2$. For small displacements, the second order term can also be neglected and the result of equation \ref{eq:beamvoltagemeas} is obtained.

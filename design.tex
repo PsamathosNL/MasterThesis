@@ -1,0 +1,284 @@
+\chapter{Design}
+\message{This is the start of the design chapter}
+\label{sec:design}
+% This section is being re-written!!
+In this chapter the design requirements will be presented and the design will be globally explained. Afterwards the different parts of the system will be discussed in detail.
+
+\section{Design requirements}
+Different aspects of the pFEL system described in chapter \ref{sec:introduction} impose constraints on the position monitor described in this report. These requirements will be discussed in the subsections below.
+
+\subsection{Ultra-High vacuum}
+The pFEL relies on an electron beam as power input. This beam is generated from a thermionic cathode, meaning that a tungsten surface is heated to high temperatures so that, together with the applied electric field, electrons have enough energy to escape the material. To allow this effect, the tungsten is coated, typically with a mixture of Barium, Strontium and Calcium oxides. As this coating has a lower work-function at the surface, electrons need less energy to escape the material. Therefore there will be more electrons being emitted, resulting in a higher output current.
+If the coating layer is contaminated by other materials, the work function increases and the current will decrease down to non-functional limits. Therefore, the electron gun must always be kept from any pollutants, practically meaning the cathode has to be kept in an ultra-high vacuum chamber.
+
+Not all materials are a negative influence on the cathode performance. However, oxygen and water vapour are prime examples of polluting gases. At the high temperature of the cathode, carbohydrates break  down and some of the constituents are also polluting.
+Since the exact effect of all possible gases is not known, all gases except pure nitrogen are considered polluting.
+
+At low pressure, many materials start to evaporate even at room temperature. This pressure is referred to as vapour pressure\footnote{Technically speaking, the vapour pressure is dependent on temperature. Higher temperature means higher vapour pressure. In this context we assume room temperature.}
+Plastics generally contain many different compounds, some of which have a high vapour pressure. Also, some water may be absorbed in the plastic.
+Natural materials such as paper, string etc. contain water and/or oil that evaporates.
+Metals and ceramics generally have low vapour pressures, but generally have a rough surface. In the case of metals this is usually an oxide layer that forms in air and in the case of ceramics it is usually due to the fabrication method. \red{REF?} This porous surface can then contain a large amount of water, oil or other high vapour pressure materials that will evaporate slowly, yet fast enough to have a significant effect on the vacuum pressure. If the surface has been properly treated mechanically or chemically, in some cases the surface can be made ``smooth''.
+
+However, even when a surface is smooth there will still be water vapour from the air as well as possible contaminants from fabrication on the surface. 
+%These would then slowly evaporate when in the vacuum, reducing the quality of the vacuum for the time they are there. The pumping down time may become longer than the experiment allows. \textcolor{red}{REF?}
+To evaporate these, the vacuum chamber is generally heated to between \SI{100}{\degreeCelsius} and \SI{250}{\degreeCelsius}. This procedure, generally known as ``bake-out'', increases the evaporation rate, increasing the rate at which water vapour and other gases are pumped out of the vacuum chamber.
+
+To summarize, the fact that the system is in vacuum places two constraints. Firstly a pressure of $10^{-8}$ mbar must be reached within a week of pumping and bake-out, so only certain metals, certain ceramics, glass and a few specifically built plastics are allowed. 
+%PLACE IN AN APPENDIX ON THE CLEANING PROCEDURE: The diagnostics system must be cleaned thoroughly to make sure no contaminants are present, so the materials used must also be resistant to water, ultrasonic cleaning methods and cleaning agents.
+
+The second constraint is of temperature resistance. In order to bake-out the vacuum chamber, the diagnostic system must be able to handle temperatures up to \SI{150}{\degreeCelsius}. The high temperature is only applied during bake-out and not necessary during operation.
+The temperature constraint is not strictly necessary, but decreases the pump-down time (the time it takes for the vacuum chamber and its contents to reach the desired low pressure) and therefore desirable. 
+
+\subsection{Size and shape constraints}
+The position monitor system has to fit inside the \SI{30}{\milli\meter} diameter vacuum tube where also two molybdenum guiding rails are present. In figure \ref{fig:vacuumtube} a schematic drawing is shown of the tube the system should fit through.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=200 pt]{vactubecut.png}
+ \caption{A cut-out showing the sizes of the vacuum tube and the molybdenum guiding rails. The diagnostic system should fit inside a tube with these sizes.}
+ \label{fig:vacuumtube}
+\end{figure}
+The electron beam position must be measured with respect to the photonic crystal, so the diagnostics system should use the same connection points. This way, when the beam has been aligned with respect to the diagnostic system, the photonic crystal can be re-inserted using the same connection points. This way the alignment is preserved. The connection points are shown in figure \ref{fig:connpoints}
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=400 pt]{connpoints.png}
+ \caption{The connection points of the Photonic Crystal are 4 alignment pins placed at the points shown. The distance between them is \mm{465}}
+ \label{fig:connpoints}
+\end{figure}
+
+\subsection{Accuracy}
+The beam has a diameter of \SI{2}{\milli\meter} and the photonic crystal discussed in chapter \ref{sec:introduction} has a clear path of \SI{3}{\milli\meter} wide and \SI{8}{\milli\meter} high. This path is \mm{465} long. The position monitor should be able to measure with sufficient accuracy to know whether the beam would hit any solid part of the Photonic Crystal. This means an error of \SI{500}{\micro\meter} over a distance of \mm{465} should be measurable. As the smaller alignment errors are also influential to the operation of the pFEL, \red{ref!} an accuracy of \SI{100}{\micro\meter} is desirable.
+
+\section{Overview of the design}
+As described in chapter \ref{sec:theory}, the diagnostic system works by measuring the proximity of the beam to 4 plates. These plates are held in slots in two macor disks, holding them firmly in place. The disks are positioned inside the grounded body of the sensor and held by a special screw. The signal from the plates is carried through an electronic circuit to isolate the input from the output. There are 4 circuits, one for each plate. These circuits are held on the side of the position monitor body. The body of the beam position monitor is held by an extension part (called ``inner tube'' in figure \ref{fig:designoverview}) and can slide through the outer guiding tube to measure at multiple positions. A global overview drawing can be seen in figure \ref{fig:designoverview}.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=500 pt]{overviewlines.pdf}
+ \caption{An overview of the sensor design. The location of the electron beam is shown by the blue line.}
+ \label{fig:designoverview}
+\end{figure}
+
+\subsection{Plates and plate holders}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=400 pt]{renderplatesdetail.png}
+ \caption{(Sectioned view) The sensor plates (blue) held in place by the macor (yellow) disks. The macor has slits to hold the plates and several slits and holes to aid in evacuating any air from the system.}
+ \label{fig:plates}
+\end{figure}
+
+The plates are made of AISI 316 stainless steel by spark erosion in order to have the accuracy needed for them to fit precisely in the slits in the isolating holder disks. Also, this method of fabrication is highly reproducible, resulting in identical plate dimensions. The choice for AISI 316 was made because this material does not oxidise, is readily machinable and non-magnetic. 
+The inner radius of the plates is \mm{4} and they are \mm{1} thick. The distance to the grounded body of the sensor is \mm{0.8}.
+The holder disks (yellow in figure \ref{fig:plates}) are made of macor, a ``machinable ceramic''. It is a material commonly used as an in-vacuum electrical isolator \red{citation needed}. The macor disks have a \mm{1} deep slit of the same dimensions as the plates. The macor disks are chosen to be \mm{2} thick and \mm{11.6} in diameter. Each plate slit has an air hole of \mm{1} diameter to aid in evacuating any particles from beneath the plates. The macor also has two evacuation slits that run along the top and outer side of them. These are also meant to aid in evacuating any particles trapped in small crevices in the grounded sensor body.
+
+
+\subsection{Circuit}
+\label{sec:design/circuit}
+As described in equation \ref{eq:vplatec}, the output signal is influenced by the capacitance of the plate to ground. Adding any cables to the plate also adds capacitance. The exact capacitance of these cables is not known, so the signal from one plate may be more affected than the other, leading to systematic errors in the measurement.
+Also, as the signal source is technically a charged capacitor, the signal decays over time with a lifetime of the order of the RC-time: $t_{RC} = R\cdot C$. As the plates have a low capacitance to ground of approximately 10\,pF, connecting this to a typical 1 M$\Omega$ port would mean a lifetime of 1.5\,ns. This is too short to have a good noise resistance as this requires a large number of samples to average over. See chapter \ref{sec:calibration/signal} for more information on how the signal was handled.
+
+To counteract this, an isolation amplifier was introduced to maintain the signal.
+The amplifier is the LT1122 from Linear Technologies. It features a very low input capacitance (4 pF) and high input impedance ($10^{12} \Omega$) while still having a large bandwidth (13 MHz) \cite{LT1122}. These traits made it the ideal choice for this circuit.
+Since most electronic parts contain resin, plastic and/or other polluting materials, the circuit (figure \ref{fig:circuit_opamp}) was designed with as little components as possible while still maintaining good signal quality and performance. Therefore, the isolation circuit has unity amplification. 
+Two capacitors (of 10\,nF) were added to reduce noise in the power supply lines. An output resistor (\SI{67}{\ohm}) was used to limit the current through the output. This was found to have a positive effect on the stability of the circuit.
+
+In order to have the best possible vacuum performance, the circuit was printed on Rogers 5350 board of \mm{0.25} thick. The normal green FR4 board material is a very porous material that therefore is not UHV-compatible, while the Rogers, being a mixture of plastic and ceramic, is more suited for UHV applications (smooth surface, low vapour pressure) \red{citation needed}.
+As the bottom side of the PCB was close to the metal sensor body, the PCB containing the circuit was designed without any vias. All components were Surface-mounted (SMD) in order to both reduce their footprint area as well as make sure no vias were necessary.
+
+The solder mask and isolating layer that are usually employed were left out as these are lacquer or plastic coatings that may have higher vapour pressures.
+As the copper tracks on the PCB could oxidise and leave a porous layer, the copper was gold-plated.\footnote{also, this looks way cooler}
+All parts were soldered using lead-free solder and afterwards the PCB was cleaned thoroughly to remove any flux residue.
+
+\begin{figure}[h]
+ \centering
+ \begin{circuitikz}[american voltages]
+ \draw
+   (0,0) node [op amp] (opamp) {}
+   (-2,-0.5) to [short, -, o-, l=input] (-2,-0.5) 
+    |- (opamp.+)
+   (opamp.-) |- (0,1.5) -| (opamp.out)
+    to [R, *-] (3,0)
+    to [short, -o] (4,0);
+ \draw
+   (0,0.5) to [short] (0,2)
+     to [short, -o] (4,2)
+   (0,-0.5) to [short] (0,-2)
+     to [short, -o] (4,-2)
+   (3.5,2) to [short, *-] (3.5,0)
+     to [C] (3.5,-1)
+     to [C, *-*] (3.5,-2)
+   (3.5,-1) to [short, -o] (4,-1);
+ \draw (4,0) node [right] {Output};
+ \draw (4,2) node [right] {$V_+$};
+ \draw (4,-1) node [right] {Ground};
+ \draw (4,-2) node [right] {$V_-$};
+ \end{circuitikz}
+ \caption{The isolation circuit used.}
+ \label{fig:circuit_opamp}
+\end{figure}
+The wire connecting the circuit to the plate was bare copper. The soldering was aided by an acidic solution \red{WHAT IS IN THE BLUE BOTTLE IN THE WORKSHOP IT WORKS MIRACLES} to etch the top layer and secure a mechanically strong connection. 
+
+\subsection{Sensor housing}
+The macor disks, the plates between them, a special screw on top to hold them together and the four PCB's are all connected to the sensor body. This part functions as the body of the device, but is also the grounded surface behind the sensor plates and it shields the electronics from the effects of a high-power electron beam.
+It is made from aluminium and has a carefully machined hole in the top to house the plate holders. On the sides there are four milled surfaces with tapped holes to hold the PCB's. On the back there are two threaded holes for the moving inner tube that is used to hold the sensor. 
+In figure \ref{fig:designfinal} two of the four wire holes can be seen. These holes are used to feed the bare copper wires that run from the sensor plates to the PCB's.
+The sensor body features four circular surfaces that slide through the guidance tube. These are at the front and at the back. \red{should I label these in the figure?}
+\begin{figure}
+  \centering
+  \includegraphics[width=220 pt]{renderfull4.png}
+  \includegraphics[width=220 pt]{rendersection1.png}
+  \caption{\red{REDO RENDER ON THE RIGHT} Renders of the final design. The left figure shows the PCB on the outside but also a set of screws that could be used to clamp a cable instead of using the PCB. On the right figure the position monitor has been cut in half, the location of the sensor plates can be seen at the top.}
+  \label{fig:designfinal}
+\end{figure}
+
+\subsection{Outer and inner tubes}
+The sensor body is held at the end of a tube by two screws. The tube is made of AISI 316 stainless steel and has been perforated along the length to allow easier evacuation. The inner tube only functions as an extension of the translation arm as the translation arm used is too wide to be inserted into the magnet.
+
+The outer tube has the connection points shown in figure \ref{fig:connpoints}. It is 465mm long and the inside has the exact same diameter as the outside parts of the sensor housing. This way the position monitor can slide through the outer tube by pushing and pulling the inner tube while maintaining a well-defined lateral position.
+
+%------------------------------------------------------------------------------------
+%-------------   OLD VERSION (parts will be cut and/or greyed):   -------------------
+%------------------------------------------------------------------------------------
+%\newpage
+%First of all, the ultra-high vacuum (UHV) limits the available materials. Second, materials must be non-magnetic in order to not disturb the magnetic field confining the electron beam before its position is measured. As a third constraint the diagnostic system should fit within the vacuum tube in the pFEL setup where the electron beam interacts with the photonic crystal. The pFEL setup has no built-in beam diagnostics, to analyse the beam position, the photonic crystal is removed and in its stead the diagnostics system is inserted.
+
+%In this chapter, each of the design constraints will be discussed, followed by a description of the design steps that were taken as well as the final design.
+% I use Position monitor for specifying the capacitive pickup sensor package and I use the term diagnostics system to specify the entire system being added, including the capacitive pickup sensor, the guiding tube and all cables connected to it.
+
+% MOVE THIS TO APPENDIX??
+%\subsection{Magnetic properties}
+%The e-gun is designed to produce a high current density, small diameter electron beam that comes to a focus just behind the anode, by means of a curved cathode and additional focus electrode. As the beam comes to a focus, the repulsive Coulomb force increases. To avoid the beam diverging after the focus, the outward coulomb force is countered by an inward Lorentz force.
+%To achieve this, a magnetic field is applied in the propagation direction of the electron beam. If the electron speed is parallel to the magnetic field, no lorentz force is present. However, if an electron starts to move radially outward, the Lorentz force is directed perpendicular to both the propagation direction and the 
+%In the pFEL, this guiding is necessary as the electrons will otherwise hit the photonic crystal and be absorbed. \textcolor{red}{REF: book on microwave tubes?} The magnetic field strength must be accurately tuned to the electron density as  a non-matching field strength will result in the electron beam diameter oscillating over distance. 
+
+%The beam position monitor must be designed in such a way that it does not influence the beam path before measuring it. Therefore any material that encloses or nears the electron beam must have a relative permeability $\mu$ of close to one. This way the guiding magnetic field is not disturbed and the electron beam will continue without disturbances to the guiding magnetic field.
+%Ferromagnetic materials are therefore not suitable, as they distort the magnetic field. Certain types of stainless steel (i.e. DIN316, a4), aluminium, (oxygen-free) copper, and titanium are examples of metals that can be used. \red{REF}
+
+%\subsection{Size and Shape constraints}
+%The vacuum tube that encloses the photonic crystal is only \SI{30}{\milli\meter} in diameter. Within this \SI{30}{\milli\meter} there are two molybdenum ``guiding rails'' that have \SI{22}{\milli\meter} in between them. 
+%In order to detect the position of the electron beam through the photonic crystal, the photonic crystal itself must be removed and replaced by the diagnostics system using the same fastening method. 
+%By using the same connections for the diagnostic system as the ones used for the photonic crystal, the diagnostic system will be in the exact same position as the photonic crystal was before exchanging them.
+%This way, when the electron beam path has been measured and aligned with comparison to the diagnostic system, exchanging the diagnostics with the photonic crystal will preserve the alignment. 
+
+%\subsubsection{Connections of the photonic crystal}
+%\label{sec:design/pcconnects}
+%The photonic crystal is connected at two points. Firstly on the electron gun side, there are two alignment pins in the photonic crystal module that fit exactly in a part welded to the electron gun. 
+%This part is assumed to be exactly in the right place. On the other side (the ``output side'') also two alignment pins are present on the photonic crystal module. These fit in a vacuum flange that can be moved up or down using a number of screws.
+%The movable flange is connected to the rest of the vacuum chamber via bellows to allow flexibility while keeping the chamber airtight.
+
+%\subsection{Design Steps}
+%\label{sec:design/steps}
+%In chapter \ref{sec:theory}, we discussed the expected response of the sensor for different distances between the beam and sensing surfaces of the position monitor. From an engineering point of view, a few parameters were fine-tuned to be easier for fabrication. A schematic view of the final system can be seen in Figure \ref{fig:CutSensorSurfaces}.
+%\begin{figure}[h]
+	%\centering
+	%\includegraphics[scale=1]{rendervertcutsensor.png}
+	%\caption{Cutout of the position monitor showing the sensor plates (blue), isolation (yellow) and grounded body (green).}
+	%\label{fig:CutSensorSurfaces}
+%\end{figure}
+
+% Here, "Sensor" is the thing that actually "senses" the beam proximity. This means the plate that will have an induced charge. Obviously, terms such as "sensor electronics" and such can be used.
+
+%\subsubsection{Sensor Guidance}
+%\label{sec:design/steps/guidance}
+%In order to get useful information regarding the electron beam path, its transverse position must be measured at a number of points along the trajectory. Therefore the sensor must either measure at multiple points simultaneously or measure at one point and move to the next.
+%
+%A simultaneous measurement requires an array of balanced position monitors that are also accurately placed and independently readable. However, the system would be relatively simple. There are no moving parts so there is no need to align an axis of movement with the geometrical axis of the system. However, the axis along which the position monitors are placed must be accurately defined.
+%A serial measurement requires a position monitor that can move through the chamber where the axis of movement overlaps with the geometrical axis of the photonic crystal. However, the sensor itself only needs to be able to measure at one point at a time, greatly simplifying that part.
+%
+%We chose the second option, a position monitor that can slide through the chamber where the photonic crystal will be, measuring in one point in space at a time where the electron beam crosses that transverse plane. This option allows us to implement different types of position monitors in series, as long as no more than one of them is intercepting (obviously, this must be the last one). Furthermore, it is expected to be easier to make a mechanically accurate moving arm than to make a series of position monitors balanced with the same accuracy. 
+
+%\begin{figure}[H]
+% \centering
+% \includegraphics[scale=0.1]{axisplaceholder.PNG}
+% \caption{\red{PLACEHOLDER} A schematic overview of the axes when using the first iteration of the %design}
+% \label{fig:axisvacuumtube}
+%\end{figure}
+
+%To achieve this mechanically accurate movement, a guiding system was designed. The two ``guiding rails'' that were already in place were obvious first candidates, but these were expected to be inaccurate when carrying weight. 
+%In a second design, the sensor would be carried solely by an external linear translation arm, providing the movement axis. However, this arm would have to be accurately aligned to the position of where the photonic crystal would be. Measuring this way would yield data on the position of the electron beam relative to an axis defined by the translation stage, but this is not necessarily the same as the photonic crystal axis (see figure \ref{fig:axisvacuumtube}).
+
+%Instead, a guiding tube was designed to have all the same alignment pins as the photonic crystal. The beam position monitor would then slide through this guiding tube, measuring the position relative to the axis defined by the photonic crystal assembly points (as described in section \ref{sec:design/pcconnects} as well as room left out for the molybdenum guiding rails that would be used to slide this tube into the vacuum chamber.
+
+%The outside of the position monitor is designed to fit exactly into the tube. Any tolerance is a direct inaccuracy for measurement. 
+
+%\subsubsection{Sensor plates}
+%\label{sec:design/steps/plates}
+%As discussed in chapter \ref{sec:theory}, the sensor plates need to be close to a grounded plate. However, they must be isolated from the grounded plate and each other. The first option considered was to have an isolating ceramic tube with notches made where the sensor plates would be, as seen in figure \ref{fig:designv1}. The plates would then be glued to the ceramic. The vacuum tube would serve as the ground plate behind the sensor plates.
+%\begin{figure}[H]
+% \centering
+% \includegraphics[scale=0.3]{designv1.PNG}
+% \caption{Early design of the position monitor. The guiding system, PCB attachment and wires are missing.}
+% \label{fig:designv1}
+%\end{figure}
+
+%This approach would have two main drawbacks, firstly the distance between the vacuum tube and the position monitor is not well-defined, as the vacuum tube is not connected to the movable flange on the output side but to a translation stage (see section \ref{sec:design/steps/guidance}). Secondly, this design relies on glue. There are special types of epoxy resin that are specifically designed to be used in UHV, but still these increase pump-down times \textcolor{red}{REF?} and were avoided. In this design, the movement axis was thought to be designed by an external translation stage.
+
+%The second iteration of the design relied on a ground plate that would move along with the sensor plates. Any electronics or cable connections could be attached to this ground plate. Also, as the ground plate would move along with the system, their distance to the sensor plates can be defined accurately.
+%In this design, shown in figure \ref{fig:designv2} the grounded plate would form the body of the position monitor (shown in green). It features a threaded hole in the front. The isolation parts (shown in yellow) would be threaded on the outside to allow them to be firmly attached inside the grounded body of the sensor. To make sure the plates could be fixed at any given (rotational) position, a metal rectifier plate with thread would be screwed in first (shown in red). The lower isolating part would then be screwed on top of the rectifier. By positioning the rectifier using a hexagonal screwdriver, the plates (shown in grey) can be fastened in any orientation. \\
+%However, the shape of the isolation would be hard to fabricate and as the material chosen is brittle, machining thread would most likely fail. Also, the tolerances of screw thread would create an error in the location measurement.\\
+%\begin{figure}[h]
+% \centering
+% \includegraphics[scale=1]{renderdesignv2,1.png}
+% \caption{(sectioned view) The two isolating plates (yellow) would be threaded on the outside and pressed together mechanically, holding the plates (blue) in a fixed position near a grounded plate (green). Also shown are the holes for the cable connecting the plates to the outside.}
+% \label{fig:designv2}
+%\end{figure}
+%\\
+%A slightly different approach was chosen. The isolating parts would be made smooth on the outside and slid into the grounded main body of the sensor.
+%The isolation would then be pushed down not by its own thread but by a special screw on top of it with a hole to allow the electrons to go through unobstructed. As the isolation can be freely rotated, it can easily be placed in the right orientation for the plates to align with the holes for the signal wire before fastening it.
+%The isolating parts are fitted with a number of small slots and holes to allow easier evacuation of air from the small crevices created in this design.
+%\begin{figure}[H]
+% \centering
+% \includegraphics[scale=.8]{renderdesignfinal1,1.png}
+% \caption{(sectioned view) Final design. The two isolating parts (yellow) are equipped with slots, holding the plates (blue) in a fixed position near the grounded sensor body (green). The top isolation is pushed down by a threaded holder (red).}
+% \label{fig:designfinal1}
+%\end{figure}
+
+%\subsubsection{Electronics}
+%\label{sec:design/steps/electronics}
+%According to the model described in chapter \ref{sec:theory}, the sensor output is dependent on the capacity of the plate with respect to ground. This means that attaching a cable to the plate changes this capacity and so the measured signal from the sensor. If two sensor plates have different lengths of cables attached, the output would be different. To prevent this, two options were considered. Firstly, attaching matched-length cables is an option. Attaching an electronic buffer circuit directly behind the sensor plate is a second option. 
+
+%The matched-cable length option was omitted because this would introduce fabrication problems as the cable connections were custom and hand-made, it can not be quaranteed that the length of the cable remains exactly equal.
+
+%As there is very little room between the guiding system and the beam, the circuit would have to be small. To make sure the cable lengths were equal on all sides and minimized, there would be four small buffer circuits, one for each sensor plate. Each circuit would contain an operational amplifier, an output resistor and two capacities for power stabilization. 
+%To connect the system to the outside world, an option for a custom connector was considered but refused because it would make the circuit too big.
+%In total, six connections would be made; 
+%\begin{itemize*}
+% \item Input
+% \item Output
+% \item positive supply voltage
+% \item negative supply voltage
+% \item ground
+% \item offset negative
+% \item offset positive
+%\end{itemize*} 
+%The offset pins can be used to eliminate a non-zero DC signal output when there is zero as input. However, these were not used as this offset was eliminated in the signal processing after measurement. The input was placed on one side of the board, in order to be close to the sensor plates. The output and other connector pads were placed at the other side, to make connecting easier and to eliminate possible interference with the input signal.
+%\begin{figure}[h]
+% \centering
+% \begin{subfigure}{\textwidth}
+%  \centering
+%  \includegraphics[scale=.3]{circuit.png}
+%  \caption{Overview of the printed circuit board.}
+% \end{subfigure} \par
+% \begin{subfigure}{\textwidth}
+%  \centering
+%  \includegraphics[scale=.3]{circuitsizes.png}
+%  \caption{The dimensions of the circuit and connecting points.}
+% \end{subfigure}
+% \caption{The final version of the circuit used.}
+% \label{fig:circuit}
+%\end{figure}
+%\\
+%The Operational amplifier ``LT1122'' was used as it featured a large bandwidth (\SI{13}{MHz}), small input capacitance (4pF) and large input impedance ($10^{12}$ Ohm) \textcolor{red}{REF:datasheet}. The large input impedance allows for the small capacitance to not immediately ``empty'' into the amplifier. The input capacitance is a direct influence on the original signal level as it contributes to $C_{ground}$ in equation \ref{eq:vplatec}. As this capacitance is small, the influence is also small. The gain was unity as no resistance was inserted in the feedback loop. This did however allow some instability, especially at high temperatures, but this was not a problem during calibration measurements.
+
+%The circuit was printed on thin (0.25mm) Rogers 5350 laminate as this is a ceramic/polymer mixture, more suitable for vacuum. \textcolor{red}{REF: the paper with the UHV ion sensor} The silkscreen, solder mask and part markings were omitted as these would only introduce more material into the vacuum chamber. The traces were gold-plated as bare copper would oxidise, leaving a porous surface behind. The circuit was designed without vias as the ``bottom'' of the circuit board could be in contact with the grounded body of the position monitor. The Laser Physics and Nonlinear Optics group logo was printed on the bottom of the PCB.
+%The position monitor was designed in such a way, that if the circuit would fail or be found unsuitable for this application, a coaxial cable could be clamped by two screws instead of fastening the circuit board.
+
+%\subsection{Final design}
+%The position monitor body could slide into the guiding tube because it has the same outer diameter as the inner diameter of the tube. The position monitor has one surface at the front and one in the back where it touches the tube. The back of the monitor also has two screw holes for fastening an extension tube, connected to a linear translation stage. This stage however is loosely connected to the monitor; it does not supply a translation axis, only position. \\
+%The circuit is connected to the sensor body using three titanium screws at the positions of the x's in figure \ref{fig:circuit}. A copper wire was soldered to each plate and connected through the hole to the input pad on each circuit board (not shown in figures). The final design is shown in figure \ref{fig:designfinalfull} . On the top and bottom are two circular surfaces, these would slide through the guiding tube.
+%\begin{figure}[h]
+% \centering
+% \includegraphics[scale=1.3]{renderfull4.PNG}
+% \caption{The final design of the position monitor (coloured with material colours). On the right are the screws for clamping a cable, on the left is a circuit board. Cables are not shown.}
+% \label{fig:designfinalfull}
+%\end{figure}
