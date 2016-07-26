@@ -24,14 +24,14 @@ In this set-up, the frequency was expected to be 16\,GHz. The photonic crystal p
 
 \section{e-beam diagnostic methods}
 Several methods exist to detect properties of the electron beam. The properties that are most interesting to the functionality of the pFEL are the transverse position, charge (or current) density and electron speed. The electron speed can readily be derived from the acceleration voltage (which can be measured externally), so a method should cover the transverse position and the charge density. 
-However, some methods are more applicable than others.
+Here, we briefly present advantages and disadvantages of some present techniques.
 
 \paragraph{Optical methods}
-In certain materials, the kinetic energy of the electrons is absorbed and converted to optical photons. \red{citation needed} These can then be imaged and thus the beam profile can be determined. A well known example of a material that has this property is phosphor. It is used to build the CRT-type screens where electrons are scanned over a glass surface that is coated with phosphor.
+In certain materials, the kinetic energy of the electrons is absorbed and converted to optical photons by a variety of effects \red{citation}. These can then be imaged and thus the beam profile can be determined. A well known example of a material that has this property is phosphor. It is used to build the CRT-type screens where electrons are scanned over a glass surface that is coated with phosphor.
 Another, more sturdy material that has this property is a Cerium-doped YAG crystal (Ce:YAG). \red{citation needed}
 However, although the kinetic energy is not very high in this system (15\,keV), the current is relatively high at up to \SI{2}{\ampere}. This current is spread over a beam with a radius of \mm{1}, giving the surface it hits a power density of around $10\,\text{kW\,mm}^{-1}$
 This is significantly more than any of the optical methods are made for. The surface melts and partly evaporates shortly after exposure to this electron beam. 
-The effects can be seen in figure \ref{fig:brokenyag}. Shown are the remains of a Ce:YAG screen with a layer of titanium on it to mirror the cathode's glow. The metal has been molten over a large part of the surface and the YAG crystal has clearly visible damage where the beam hit. 
+The effects can be seen in figure \ref{fig:brokenyag}. Shown are the remains of a Ce:YAG screen with a layer of titanium to block the glow from the hot cathode. The metal has been molten over a large part of the surface and the YAG crystal has clearly visible damage where the beam hit. 
 \begin{figure}[h]
  \centering
  \includegraphics[width=200pt]{brokenYAG.png}
@@ -39,26 +39,28 @@ The effects can be seen in figure \ref{fig:brokenyag}. Shown are the remains of 
  \label{fig:brokenyag}
 \end{figure}
 
-Changing the energy deposited by the beam would require either a shorter pulse time, a lower beam current (charge density) or a lower acceleration potential.
-Due to the nature of the set-up, the pulse time can not be made shorter than \SI{1}{\micro\second} which does not solve the problem. Changing the charge density or the acceleration potential requires a different magnetic field. 
-This is another possible source of errors in the electron beam path as this may oscillate or spiral if the magnetic field is set wrongly. Therefore changing the magnetic field is not preferable.
-Since this is not possible, the optical measurements are not applicable for this measurement.
+In order to allow for optical methods to be used, the energy density would have to be lowered by at least 4 orders of magnitude. 
+This would require either a shorter pulse time, a lower beam current (charge density) or a lower acceleration potential.
+Due to the electronics in the electron gun control, the pulse time can not be made shorter than \SI{1}{\micro\second} which does not solve the problem. 
+%de snelheid of ladingsdichtheid aanpassen zorgt ervoor dat het magneetveld niet meer gematcht is. Stel dat we dit observeren en corrigeren bij een aangepaste magneetveld/ladingsdichtheid wil dat niet zeggen dat de nominale magneetveld/ladingsdichtheid combinatie ook goed werkt.
+Changing the charge density or the acceleration potential creates a mismatch between the charge density, acceleration potential and magnetic field. If this mismatch would be corrected, the diagnostics would not be able to guarantee that the nominal acceleration voltage and charge density would be matched.
+Furthermore, the electron gun has a certain set voltage range where the beam is well-defined, so the acceleration potential can not be lowered significantly.
+Hence, the energy deposition by the electrons can not be decreased to a level suitable for a screen.
 
 \paragraph{Electrical methods}
 Another method to locate an electron beam is to use a faraday cup. This is a cylinder with one open end and a ``target'' in the center. The target is connected to electrical ground via a current measurement device. 
-The electron beam hits the target and the current is measured. If the cup consists of multiple segments, the current profile over different segments directly translates to a beam profile. \red{citation needed}
-This enables a faraday cup to be used as a beam profile measurement device.
-However, our simulations (see appendix \ref{sec:heatsims}) have shown that for a straight impact angle, the surface is heated up to above the melting point of any metal\footnote{except Adamantium and Mithril which are not readily available at this time.}.
+The electron beam hits the target and the current to ground is measured. If the cup consists of multiple segments, the current profile over different segments directly translates to a beam profile.
+This enables a faraday cup to be used as a beam profile measurement device, giving information on the current distribution, total current and location of the beam.
+However, our simulations (see appendix \ref{sec:heatsims}) have shown that when the electron beam is normally incident on the surface of the target, the surface is heated up to above the melting point of any metal\footnote{except Adamantium and Mithril which are not readily available at this time.}.
 
-Another option is a beam position monitor (BPM). This is a device generally used for bunched ion or electron beams. It consists of a set of plates parallel to the beam path. As the beam bunches induce a voltage on the plates, the voltage readout gives information on the center-of-charge of the beam and its total charge density.
+Another option is a beam position monitor (BPM). This is a device generally used for pulsed ion or electron beams. It consists of a set of electrodes (metal plates) parallel to the beam path. A passing electron pulse induces a voltage on the electrodes. The voltages of four electrodes distributed over 360 degrees are processed to produce signals that are proportional to the diplacement of the center-of-charge from the axis of the sensor and proportional to the beam current (or pulse charge).
+As BPM's rely on capacitive coupling and not on impact measurements, the beam can continue undisturbed. Therefore, BPM's are so-called non-intercepting detectors.
 
-Although this is a viable method for measuring high-power electron beams, it is generally only used for bunched beams, where the pFEL relies on a quasi-static beam. \red{citation needed}.
+Although this is a viable method for measuring high-power electron beams, it is generally only used for pulsed beams, while the pFEL relies on a quasi-static beam. \red{citation needed}.
 
-In this report, the design of a specialized type of BPM is explained
-By utilizing the principles of a set of capacitive pick-up electrodes, the beam is not intercepted. This way the high energy of the electron beam is not turned to destructive heat and can in future designs even still be utilized in the laser system.
-The normal problems of capacitive pick-up electrodes are overcome by a DC-coupling and thus the electrode is also usable for a quasi-DC beam. 
-
-% waarom heb ik dit ook al weer gekozen?
+In this report the design of a BPM optimized for operation in a pFEL is explained.
+By utilizing the principles of a set of capacitive pick-up electrodes, the beam is not intercepted. This is a huge advantage as the detecting method is no longer limiting the current density of the beam as is the case with intercepting methods (screens, faraday cup) where the energy from the electron beam is turned to destructive heat. 
+In the following chapters, a theoretical background of the principles of BPM's will be explained, followed by the actual design of this specific BPM. Also, a chapter is included explaining the calibration of the BPM.
 
 %korte samenvatting: we hebben X gedaan
 %  inschatting van uitkomst/ theorie
