@@ -13,20 +13,18 @@ This report describes a sensor system that is able to measure the transverse loc
 
 \section{The photonic Free Electron Laser}
 %CFEL --> problems with high power beams --> pFEL multiple beams --> diagnostic is missing --> This report describes solution
-Cherenkov Free Electron Lasers (CFEL's) have been a field of study for a long time \red{insert references here}. However, generally the output power is limited due to the nature of the Cherenkov radiation.
-In order to increase the power radiated, the electron beam current must be increased. This leads to an increase in necessary measures to be taken in order to stop the beam from diverging and destroying the medium.
-\red{insert formula on beam divergence to show this}
+Cherenkov Free Electron Lasers (CFEL's) have been a field of study for a long time \red{citations}. However, generally the output power is limited due to the nature of the Cherenkov radiation.
+In order to increase the power radiated, the electron beam current must be increased. The beam energy in CFEL's is typically low (\red{how low?}) \red{citations}, while using a high beam current. Consequently a high current density leads to a strong coulomb repulsion between electrons which makes it difficult to generate and transport such a beam \red{citations}.
 
-In order to overcome these problems, the photonic Free-Electron laser was developed. Here, the homogeneous medium is replaced by a photonic crystal, allowing multiple electron beams to contribute to a single-mode output power \cite{DenisMultiBeam}.
-The merits of the photonic crystal as a Cherenkov medium have been shown in simulations, possibly allowing a continuously tunable source with high output power.
-A proof-of-principle set-up has been built \cite{Denis} but no output was detected. In this set-up, the frequency was expected to be 16\,GHz. The photonic crystal period was 4.2\,mm. The electron beam was accelerated from 10\,kV up to 15\,kV and the current was measured to be around 1\,A.
+In order to overcome these problems, the photonic Free-Electron laser was developed. Here, the homogeneous dielectric medium is replaced by a metallic photonic crystal (PC)\footnote{Although a dielectric PC could also be used, but the higher thermal conductivity and \red{not-chargeability} make metal a more convenient choice.}.
+The merits of the PC as a Cherenkov medium have been shown in simulations, possibly allowing a continuously tunable source with high output power.
+The PC also allows multiple electron beams to contribute mostly to the same eigenmode in the photonic crystal, effectively negating the biggest drawback of the CFEL.\cite{DenisMultiBeam}.
+A proof-of-principle set-up has been built \cite{Denis} but e-beam diagnostics were not implemented. The work presented in this report remedies this problem.
+In this set-up, the frequency was expected to be 16\,GHz. The photonic crystal period was 4.2\,mm. The electron beam was accelerated with voltages ranging from around 10\,kV up to 15\,kV and the beam current was measured to be around 1\,A.
 
-\section{Troubleshooting}
-It is believed that the lack of output is due to a misalignment of the electron beam, photonic crystal axis and the magnetic field direction.
-
-% pFEL is praktisch minder
-However, methods to determine the transverse position of an electron beam are not readily in place but must be added to the pFEL set-up. 
-There are a number of methods to detect the position of an electron beam.
+\section{e-beam diagnostic methods}
+Several methods exist to detect properties of the electron beam. The properties that are most interesting to the functionality of the pFEL are the transverse position, charge (or current) density and electron speed. The electron speed can readily be derived from the acceleration voltage (which can be measured externally), so a method should cover the transverse position and the charge density. 
+However, some methods are more applicable than others.
 
 \paragraph{Optical methods}
 In certain materials, the kinetic energy of the electrons is absorbed and converted to optical photons. \red{citation needed} These can then be imaged and thus the beam profile can be determined. A well known example of a material that has this property is phosphor. It is used to build the CRT-type screens where electrons are scanned over a glass surface that is coated with phosphor.
