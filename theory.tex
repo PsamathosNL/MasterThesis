@@ -1,4 +1,4 @@
-\chapter{Electrostatic approach}
+\chapter{Methods of Measurement}
 \label{sec:theory}
 In this chapter, the theory of detecting an electron beam position using its (quasi-) static coulomb field on capacitive plates is presented. Firstly, the coulomb field of a charge distribution inside a coaxial metallic tube is calculated. Then, the theory of probing this field is explained followed by a quantitative description of how this can be used to detect the position of an electron beam.
 %------------------------------------------------
@@ -8,7 +8,7 @@ Any static charge distribution has an electric field that can be described by \c
 \begin{equation}
 \textbf{E}(\mathbf{r}) = \frac{1}{4\pi\epsilon_0}\int_\mathcal{V}\frac{\rho(\mathbf{r}^\prime)}{\rcurs^2}\hat{\brcurs}d\tau^\prime
 \end{equation}
-where E is the electric field strength, $\mathbf{r}$ is the position vector where the field is measured, $\epsilon_0$ is the permeability of the vacuum, $\rho(\mathbf{r^\prime})$ is the charge density at position $\mathbf{r^\prime}$, \brcurs \hspace{2pt} is the vector from $\mathbf{r^\prime}$ to $\mathbf{r}$ and $d\tau^\prime$ is an infinitesimal volume element. In principal, the integral is evaluated over all space, but since $\rho$ will be zero where no charge is present, we can confine the integral to the volume $\mathcal{V}$ where charges are present.
+where E is the electric field strength, $\mathbf{r}$ is the position vector where the field is measured, $\epsilon_0$ is the permeability of the vacuum, $\rho(\mathbf{r^\prime})$ is the charge density at position $\mathbf{r^\prime}$, \brcurs \hspace{2pt} is the vector from $\mathbf{r^\prime}$ to $\mathbf{r}$ and $d\tau$ is an infinitesimal volume element. The integral is technically evaluated over all space, but since $\rho$ will be zero where no charge is present, we can confine the integral to the volume $\mathcal{V}$ where charges are present.
 The corresponding potential distribution is given by 
 \begin{equation}
 \nabla^2V(\mathbf{r})=-\frac{\rho}{\epsilon_0}
@@ -16,53 +16,48 @@ The corresponding potential distribution is given by
 %V(\mathbf{r})=\frac{-1}{4\pi\epsilon_0}\int\frac{\rho(\mathbf{r}^\prime)}{\rcurs}d\tau, incorrect 
 where \textit{V} is the potential. However, a reference point is required to integrate from in order to get a numerical value for \textit{V}.
 
-As charge distribution we assume the electron beam to be an infinitely long homogeneous rod of radius $r_b$, with charge density $\rho_b$. For a constant velocity $v_b$, $\rho_b$ is given by:
+As charge distribution we assume the electron beam to be a homogeneous rod of radius $r_b$, with charge density $\rho_b$. For a constant velocity $v$, $\rho_b$ is given by:
 \begin{equation}
 \label{eq:rho1}
-\rho_b = \frac{I}{\pi r_b^2v_b}
+\rho_b = \frac{I}{\pi r_b^2v}
 \end{equation}
-where $I$ is the total current of the electron beam.
-If the velocities are nonrelativistic ($v_b\ll c$), the velocity can be expressed as a function of the potential over the anode and cathode as
+where $I$ is the current of the electron beam, $r_b$ is the beam radius and $v$ is the beam velocity.
+If the speeds are not relativistic ($v\ll c$), the speed can be expressed in the potential over the anode and cathode as
 \begin{displaymath}
-v_b = \sqrt{\frac{2eU_{acc}}{m_e}}
+v = \sqrt{\frac{2eU_{acc}}{m_e}}
 \end{displaymath}
-where $U_{acc}$ is the acceleration potential in volts, $e$ is the charge of an electron ($1.60\cdot10^{-19}$ C) and $m_e$ is the rest mass of an electron ($9.11\cdot 10^{-31}$\,kg). The velocity is given in m/s. Inserting this into equation \ref{eq:rho1} yields:
+where $U_{acc}$ is the acceleration potential in volts, $e$ is the charge of an electron ($1.60\cdot10^{-19}$ C) and $m_e$ is the rest mass of an electron ($9.11\cdot 10^{-31}$). The velocity is given in m/s. Inserting this into equation \ref{eq:rho1} yields:
 \begin{equation}
 \rho = \frac{I}{\pi r_b^2} \sqrt{\frac{m_e}{2eU_{acc}}}
 \end{equation}
 
-Now consider that the electron beam is enclosed by a grounded conducting tube at a distance R from the center. This will be our reference potential ($U(R) = 0$).
+The electron beam is enclosed by a grounded conducting tube at a distance R from the center. This will be our reference potential ($U(R) = 0$).
 
-From here on, $z$ will be used to denote the distance in the propagation direction of the electron beam, $r$ is the distance from the center of the beam in the plane perpendicular to $z$ and $\phi$ is the angle in this plane.\footnote{Do note I am using $r$ to denote the distance to the z-axis (a scalar) and \textbf{r} to denote a position (a vector).}
+From here on, $z$ will be used to denote the distance in the propagation direction of the electron beam. $r$ is the distance from the center of the beam in the plane perpendicular to $z$ and $\phi$ is the angle in this plane.\footnote{Do note I am using $r$ to denote the distance to the z-axis (a scalar) and \textbf{r} to denote a position (a vector) They are not always interchangeable.}
 
 To get to the potential distribution, we apply Gauss' law \cite{GriffithsEM}. As a surface we take a cylinder enclosing the electron beam (that has a homogeneous charge density $\rho$), with length $l$ and radius $r$.
-\begin{equation}
-\int\textbf{E}\cdot d\mathbf{a} &= E\cdot2\pi r l = \frac{Q_{enc}}{\epsilon_0} = \rho \frac{l\pi r_b^2}{\epsilon_0}
-\end{equation}
-Here $d\mathbf{a}$ denotes the unity vector perpendicular to the surface that we integrate over. The integral over $\textbf{E}\cdot d\mathbf{a}$ will give the flux of the electric field through this surface. 
-The two end facets of the cylinder are parallel to the field lines as we assume the charge distribution (the electron beam) to be infinitely long. Therefore, these two surfaces do not contribute to the integral.
-The geometry described so far has radial symmetry, therefore the electric field will be in the radial direction.
-\begin{equation}
-\mathbf{E}(\mathbf{r}) &= \rho \frac{r_b^2}{2\epsilon_0r}\hat{\mathbf{r}}
-\end{equation}
+%As a surface we take a cylinder enclosing the electron beam (that has charge-per-length $\lambda$), with length $l$ and radius $r$.
+\begin{align}
+\int\textbf{E}\cdot d\mathbf{a} &= E\cdot2\pi r l = \frac{Q_{enc}}{\epsilon_0} = \rho \frac{l\pi r_b^2}{\epsilon_0} \\
+\mathbf{E}(\mathbf{r}) &= \rho \frac{r_b^2}{2\epsilon_0r}\hat{\mathbf{r}} \\
+\end{align}
 Using the integral definition of the electric potential:
 \begin{align}
 U(r_b)-U(R) &= -\int_R^{r_b} \mathbf{E}\cdot d\mathbf{l} \nonumber \\
 &= - \rho \frac{r_b^2}{2\epsilon_0}  \int_R^{r_b} \frac{1}{r} dr
 \end{align}
-Solving the integral gives the potential at the beam edge ($U(r_b)$):
+From this it is derived that the potential at the beam edge ($U_b$) is given by:
 \begin{equation}
 \label{eq:vbeamrho}
-U(r_b) = - \rho \frac{r_b^2}{2\epsilon_0} \log\left(\frac{R}{r_b}\right)
+U_b = - \rho \frac{r_b^2}{2\epsilon_0} \log\left(\frac{R}{r_b}\right)
 \end{equation}
-or, using equation \ref{eq:rho1}:
+or in other terms
 \begin{equation}
 \label{eq:vbeamI}
-U(r_b)=\frac{I}{2\pi\epsilon_0 c}\sqrt{\frac{m_e}{2U_{acc}}}\log\left(\frac{R}{r_b}\right)
+U_b=\frac{I}{2\pi\epsilon_0}\sqrt{\frac{m_e}{2\,e\,U_{acc}}}\log\left(\frac{R}{r_b}\right)
 \end{equation}
-From here I will call $U(r_b)$ simply $U_b$. Although there also is a potential inside the electron beam, it is not of interest to our model.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \input{Pictures/geometrytikz}
 \caption{Geometry of the theoretical system.}
@@ -70,13 +65,14 @@ From here I will call $U(r_b)$ simply $U_b$. Although there also is a potential 
 \end{figure}
 
 \section{The sensing mechanism}
-If we first assume an infinitesimally thin metal plate, curved such that it coincides with an equipotential line. The plate would normally even out the potential as the free charges inside it can move freely to nullify any differences in potential across the metal. However, as the plate already is at an equipotential and it is thin, the effect of the plate on the field can be neglected. In this case, the potential of the plate will be the potential of the equipotential line it coincides with. 
+In the section above, a model was presented for the potential distribution outside the beam and within the grounded tube ($r_b\le r\le R$). If the beam is not in the center, this potential distribution changes. Measuring the potential distribution therefore gives information on the position of the beam. Before we deviate from the coaxial symmetry (we will do this in section \ref{sec:theory/deviating}), we will first look into a way to probe the potential using metal electrodes.
+We first assume an infinitesimally thin metal plate, curved such that it coincides with an equipotential line. The plate would normally even out the potential as the free charges inside it can move freely to nullify any differences in potential across the metal. However, as the plate already is at an equipotential and it is thin, the effect of the plate on the field can be neglected. In this case, the potential of the plate will be the potential of the equipotential line it coincides with. 
 This potential can be measured, but the system must be known in more detail in order to correctly do this.
 As electrons inside the beam can (in a quasi-static case) move freely under influence of external fields, we can treat the beam as a conducting rod that is lifted to the beam potential $U_b$.\textcolor{red}{REF?} This way, there are two ``metal'' surfaces so there is a capacitive connection between the beam and the sensor plates. The plates themselves are a distance $b$ from the grounded tube the beam is travelling through, so these have a capacitive connection to ground. The equivalent circuit diagram corresponding to a rigid electron beam inside a hollow metallic tube with a thin cylindrical sensing plate is given in figure \ref{fig:capacities}.
 \begin{figure}[H]
 \centering
 \begin{circuitikz}[american voltages]
-\draw
+\drawe
   (2,0) to [short] (0,0)
   to [open, l^=$U_b$, o-o] (0,2)
   to [short, o-] (2,2)
@@ -151,6 +147,7 @@ C_g^\prime = C_g + C_{par}
 Exchanging the $C_g$ for $C_g^\prime$ in equation \ref{eq:vplatec}, the correct way for calculating the response is now a combination of equations \ref{eq:vplatec}, \ref{eq:capbeam} and \ref{eq:capplate}.
 
 \subsection{Deviating from coaxial symmetry}
+\label{sec:theory/deviating}
 The plates are fixed in position compared to the grounded tube surrounding them, making the capacity to ground $C_g$ a fixed value, even if the beam changes position. If the beam moves out of the center, only the value for $C_{bs}$ will change.
 To calculate the potential response of the sensor plates to different beam positions, a model of this capacitance $C_{bs}$ must be constructed. 
 In the following derivation, the \textit{coaxial approximation} will be kept, but the radius of the sensing plates will be replaced for the distance between the beam center and the plate's inner surface. For a beam that is displaced from the center a distance $d$ upwards, this yiels:
