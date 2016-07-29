@@ -154,14 +154,14 @@ C_g^\prime = C_g + C_{par}
 Exchanging the $C_g$ for $C_g^\prime$ in equation \ref{eq:vplatec}, the correct way for calculating the response is now a combination of equations \ref{eq:vplatec}, \ref{eq:capbeam} and \ref{eq:capplate}.
 
 \subsection{Deviating from coaxial symmetry}
-The plates are fixed in position compared to the grounded tube surrounding them, making the capacity to ground $C_g$ a fixed value, even if the beam changes position. If the beam moves out of the center, only the value for $C_{bs}$ will change.
+The plates are fixed in position with respect to the grounded tube surrounding them, making the capacity to ground $C_g$ a fixed value, even if the beam changes position. If the beam moves out of the center, only the value for $C_{bs}$ will change.
 To calculate the potential response of the sensor plates to different beam positions, a model of this capacitance $C_{bs}$ must be constructed. 
 In the following derivation, the \textit{coaxial approximation} will be kept, but the radius of the sensing plates will be replaced for the distance between the beam center and the plate's inner surface. For a beam that is displaced from the center a distance $d$ upwards, this yiels:
 \begin{align}
 C_1 &= \theta \frac{\epsilon_0l}{\ln\left(\frac{r_s-d}{r_b}\right)} \\
 C_2 &= \theta \frac{\epsilon_0l}{\ln\left(\frac{r_s+d}{r_b}\right)}
 \end{align}
-where $C_1$ and $C_2$ are the upper and lower plates' capacitance to the beam respectively.\footnote{The $C_{bs}$ will now be replaced with $C_n$ where $n$ is the number of the sensor plate, counted in the order ``up'', ``down'', ``left'' and ``right'', when looking \textit{toward} the electron beam source. The same numbers will be used for the sensor plate potential response, $U_n$.}
+where $C_1$ and $C_2$ are the upper and lower electrodes' capacitance to the beam respectively.
 We then obtain (using a geometry constant $a=\theta\epsilon_0l$):
 \begin{align}
 U_1 &= U_b\frac{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}+C_g^\prime} \\
@@ -177,11 +177,11 @@ In figure \ref{fig:plateresponse} the response of such a system is shown as a fu
 
 \newpage
 \section{Signal processing and Linearisation}
-The position of the beam center must be measured using the output of the plates. The plate geometry was chosen such that the effect of the displacement in the `x'-direction is only visible in the difference in output of the horizontally spread (left-and-right) plates while having a minimal effect on the output of the vertically spread plates. This way, by analysing the difference in output of opposite plates, the position of the beam between them can be measured. Using two perpendicular sets of plates then gives the beam center position in 2 dimensions. 
+The position of the beam center can be measured using the output of the electrodes. The plate geometry was chosen such that the effect of the displacement in the `x'-direction is only visible in the difference in output of the horizontally spread (left-and-right) plates while having a minimal effect on the output of the vertically spread plates. This way, by analysing the difference in output of opposite plates, the position of the beam between them can be measured. Using two perpendicular sets of plates then gives the beam center position in 2 dimensions. 
 To readily derive the position of the beam center, between two plates, the plate response functions must be combined.
 \subsection{Locating position}
 % add assumption that C_g is the same for every electrode because ***blabla op-amps blabla wires blabla
-To start off, only two plates are considered. The position is determined along the axis between the two plates. First, recall equation \ref{eq:vplatec} \footnote{To make the equations more easily readible, I will omit the primes on $C_g$. Starting this section, the parasitic capacitance of cables, electronics etcetera is implicitly included in $C_g$}:
+The position is determined along the axis between the two electrodes. First, recall equation \ref{eq:vplatec} \footnote{To make the equations more easily readible, I will omit the primes on $C_g$. Starting this section, the parasitic capacitance of cables, electronics etcetera is implicitly included in $C_g$}:
 \begin{equation*}
 U_1=\frac{C_1}{C_1+C_g}
 \end{equation*}
