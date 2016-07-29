@@ -161,34 +161,33 @@ In the following derivation, the \textit{coaxial approximation} will be kept, bu
 C_1 &= \theta \frac{\epsilon_0l}{\ln\left(\frac{r_s-d}{r_b}\right)} \\
 C_2 &= \theta \frac{\epsilon_0l}{\ln\left(\frac{r_s+d}{r_b}\right)}
 \end{align}
-where $C_1$ and $C_2$ are the upper and lower electrodes' capacitance to the beam respectively.
+where $C_1$ and $C_2$ are the upper and lower electrodes' capacitance to the beam respectively. In total there are four electrodes, located in quadrants. These are numbered in the order ``up'', ``down'', ``left'' and ``right'' when looking \textit{toward} the electron gun. These numbers will now replace the subscripts of both $C_{bs}$ and $U_s$.
+All plates have the same surface area with the same distance to the grounded tube surrounding them, so $C_g$ will be equal for all plates. Since the electronics will have very similar capacitances and the wires connecting the electrodes to the electronics will have a very small contribution to $C_{par}$, we assume $C_g^\prime$ to be equal for all four electrodes, independent of the position of the electron beam.
 We then obtain (using a geometry constant $a=\theta\epsilon_0l$):
 \begin{align}
 U_1 &= U_b\frac{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}+C_g^\prime} \\
 U_2 &= U_b\frac{\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}+C_g^\prime} \label{eq:plateresponse}
 \end{align}
-In figure \ref{fig:plateresponse} the response of such a system is shown as a function of the deviation of the electron beam position from the center.
+In figure \ref{fig:plateresponse} the output of such a system is shown as a function of the deviation of the electron beam position from the center.
 \begin{figure}[hb!]
 \centering
 \includegraphics[width = 10cm]{plateresponse2v3.pdf}
-\caption{Potential response of opposite sensor plates}
+\caption{\red{ADD LEGEND} Calculated potential of opposite electrodes as a function of beam displacement.}
 \label{fig:plateresponse}
 \end{figure}
 
 \newpage
 \section{Signal processing and Linearisation}
-The position of the beam center can be measured using the output of the electrodes. The plate geometry was chosen such that the effect of the displacement in the `x'-direction is only visible in the difference in output of the horizontally spread (left-and-right) plates while having a minimal effect on the output of the vertically spread plates. This way, by analysing the difference in output of opposite plates, the position of the beam between them can be measured. Using two perpendicular sets of plates then gives the beam center position in 2 dimensions. 
-To readily derive the position of the beam center, between two plates, the plate response functions must be combined.
-\subsection{Locating position}
-% add assumption that C_g is the same for every electrode because ***blabla op-amps blabla wires blabla
-The position is determined along the axis between the two electrodes. First, recall equation \ref{eq:vplatec} \footnote{To make the equations more easily readible, I will omit the primes on $C_g$. Starting this section, the parasitic capacitance of cables, electronics etcetera is implicitly included in $C_g$}:
+The position of the beam center can be measured using the output of the electrodes. The geometry of the electrodes was optimized to maximize the signal on the electrodes along the axis of the displacement of the beam. This way, by analysing the difference in output of opposite plates, the position of the beam between them can be measured. Using two perpendicular sets of plates then gives the beam center position in the transverse plane.
+In this section, the method of processing the signals from the electrodes to derive the position of the beam center.
+\subsection{Measuring beam position}
+To start off, only two plates are considered. The position is determined along the axis between the two electrodes. First, recall equation \ref{eq:vplatec} \footnote{The primes on $C_g$ will be omitted from this point. The parasitic capacitance is absorbed in $C_g$.}:
 \begin{equation*}
 U_1=\frac{C_1}{C_1+C_g}
 \end{equation*}
-To combine the signals, the difference of two opposite-plate potentials is divided over their sum. This may seem arbitrary, but it works out nicely in the end.
+To combine the signals, the difference between two opposite-plate potentials is divided over their sum. This may seem arbitrary, but the reasons for this will become apparent at the end of this section.
 \begin{align}
 \frac{U_1-U_2}{U_1+U_2} &= \frac{\frac{C_1}{C_1+C_g}-\frac{C_2}{C_2+C_g}}{\frac{C_1}{C_1+C_g}+\frac{C_2}{C_2+C_g}} \nonumber \\
-&= \frac{C_1(C_2+C_g)-C_2(C_1+C_g)}{C_1(C_2+C_g)+C_2(C_1+C_g)} \nonumber \\
 &= \frac{C_g(C_1-C_2)}{2C_1C_2+C_g(C_1+C_2)} \nonumber  \\
 \text{Assuming that $C_1,C_2 \ll C_g$:} \nonumber \\
 &= \frac{C_1-C_2}{C_1+C_2} \label{eq:linearstep1}
