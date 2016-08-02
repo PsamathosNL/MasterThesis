@@ -128,9 +128,9 @@ This derivation is valid for any electrode coinciding with a (part of an) equipo
 If the electrode only covers a part of the equipotential surfaces, multiple identical electrodes can be used on the same equipotential. These then have equal capacitances and therefore equal potentials.
 However, the capacitance of the electrodes to the beam changes when the beam is not centered. The pickup design presented in this report relies on this principle.
 To know the output voltage of the electrodes, the capacities must be calculated.
-First, consider the capacity of two concentric, cylindrical metal surfaces of length $l$, the outer one of radius $b$, the inner one of radius $a$. The capacity is then given by\cite{GriffithsEM}:
+First, consider the capacity of two concentric, cylindrical metal surfaces of length $l$, the outer one of radius $R_b$, the inner one of radius $R_a$. The capacity is then given by\cite{GriffithsEM}:
 \begin{equation}
-C = \frac{2\pi\epsilon_0l}{\ln \left(\frac{b}{a} \right)}
+C = \frac{2\pi\epsilon_0l}{\ln \left(\frac{R_b}{R_a} \right)}
 \label{eq:capconc}
 \end{equation}
 If now, instead of using a full circle, two half-circle surface are considered, they should have only half the capacity. This is of course neglecting the edges of the surfaces, but these edges are close to each other, effectively negating these effects. In the following analysis, the surfaces are considered to be almost-touching (neglecting edge effects) and to span an angle $\theta$ as can be seen in figure \ref{fig:geofrontview}.
@@ -183,26 +183,27 @@ In this section, the method of processing the signals from the electrodes to der
 \subsection{Measuring beam position}
 To start off, only two plates are considered. The position is determined along the axis between the two electrodes. First, recall equation \ref{eq:vplatec} \footnote{The primes on $C_g$ will be omitted from this point. The parasitic capacitance is absorbed in $C_g$.}:
 \begin{equation*}
-U_1=\frac{C_1}{C_1+C_g}
+U_i=\frac{C_i}{C_i+C_g}
 \end{equation*}
-To combine the signals, the difference between two opposite-plate potentials is divided over their sum. This may seem arbitrary, but the reasons for this will become apparent at the end of this section.
+We define the measured quantity as the difference between two opposite-plate potentials, divided over their sum ($\widetilde{\Delta U}$). This may seem arbitrary, but the reasons for this will become apparent at the end of this section.
 \begin{align}
-\frac{U_1-U_2}{U_1+U_2} &= \frac{\frac{C_1}{C_1+C_g}-\frac{C_2}{C_2+C_g}}{\frac{C_1}{C_1+C_g}+\frac{C_2}{C_2+C_g}} \nonumber \\
+\widetilde{\Delta U} &= \frac{U_1-U_2}{U_1+U_2} \nonumber \\
+&= \frac{\frac{C_1}{C_1+C_g}-\frac{C_2}{C_2+C_g}}{\frac{C_1}{C_1+C_g}+\frac{C_2}{C_2+C_g}} \nonumber \\
 &= \frac{C_g(C_1-C_2)}{2C_1C_2+C_g(C_1+C_2)} \nonumber  \\
 \text{Assuming that $C_1,C_2 \ll C_g$:} \nonumber \\
 &= \frac{C_1-C_2}{C_1+C_2} \label{eq:linearstep1}
 \end{align}
-This relates the measured values to the capacities. Now to get to the actual displacement we combine equation \ref{eq:linearstep1} with \ref{eq:capplate}. The variable $a$ is the same as in equation \ref{eq:plateresponse}.
+This relates the electrodes' potentials to the capacities. It is worth noting that $\widetilde{\Delta U}$ does not depend on $C_g$. This implies that, as long as the parasitic capacitance is equal for all electrodes, the capacitance to ground has no effect on $\widetilde{\Delta U}$. Now to get to the actual displacement we combine equation \ref{eq:linearstep1} with \ref{eq:capplate}. % The variable $a$ is the same as in equation \ref{eq:plateresponse}. only necessary for intermediate step
 \begin{align}
-\frac{U_1-U_2}{U_1+U_2} &= \frac{C_1-C_2}{C_1+C_2} \nonumber \\
-&= \frac{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}-\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}+\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}} \nonumber \\
+\widetilde{\Delta U} &= \frac{C_1-C_2}{C_1+C_2} \nonumber \\
+%&= \frac{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}-\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}}{\frac{a}{\ln\left(\frac{r_s-d}{r_b}\right)}+\frac{a}{\ln\left(\frac{r_s+d}{r_b}\right)}} \nonumber \\ % Leave out intermediate steps ?
 &= \frac{\ln\left(\frac{r_s+d}{r_s-d}\right)}{\ln\left(\frac{(r_s+d)(r_s-d)}{r_b^2}\right)}\label{eq:linearstep2}
 \end{align}
-Taking the Taylor expansion of \ref{eq:linearstep2} yields:
+Applying a Taylor expansion of \ref{eq:linearstep2} in $d$ yields:
 \begin{equation}
 \frac{U_1-U_2}{U_1+U_2}=\frac{d}{r_s\ln\frac{r_s}{r_b}} + \frac{d^3}{r_s^3}\left(\frac{1}{2\ln\frac{r_s}{r_b}^2}+\frac{1}{3\ln\frac{r_s}{r_b}}\right)+O(\frac{d^5}{r^5}) \label{eq:linearstep3}
 \end{equation}
-The higher order terms scale with $d^n/r_s^n$. So, as long as the displacement $d$ is smaller than $R-s$, the assumption that the higher order terms are negligible is valid. So, for a small displacement $d$ compared to the distance to the sensing plates, the difference-over-sum as seen in \ref{eq:linearstep3} will give a linear response to the deviation of the beam from the center. This can be seen in figure \ref{fig:measd}, where from a displacement of about 1 mm the higher orders start being significant and the calculated displacement is no longer linear. However, around this point the coaxial approximation that was used to determine the calculated response is also no longer valid. Therefore, the exact displacement where the position monitor will stop behaving linearly must be experimentally verified.
+The higher order terms scale with $d^n/r_s^n$. Therefore, as long as the displacement $d$ is smaller than $R-s$, the assumption that the higher order terms are negligible is valid. Consequently, for a small displacement $d$ compared to the distance to the sensing plates, the difference-over-sum as seen in equation \ref{eq:linearstep3} will give a linear response to the deviation of the beam from the center. This can be seen in figure \ref{fig:measd}, where from a displacement of about 1 mm the higher orders start being significant and the calculated displacement is no longer linear. However, around this point the coaxial approximation that was used to determine the calculated response is also no longer valid. Therefore, the exact displacement where the position monitor will stop behaving linearly must be experimentally verified.
 \begin{figure}[h]
 \centering
 \includegraphics[width=10cm]{measureddeviationv3.pdf}
