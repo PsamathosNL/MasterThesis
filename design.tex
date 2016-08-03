@@ -44,21 +44,20 @@ The positions of the connection pointsshown in figure \ref{fig:connpoints}
 \begin{figure}[H]
  \centering
  \includegraphics[width=400 pt]{connpoints.png}
- \caption{The photonic crystal is positioned using 4 alignment pins shown in this figure. There are 2 at each end of the photonic crystal, the pairs being \mm{465} apart. The same alignment pins will be used to position the sensor system.
+ \caption{The photonic crystal is positioned using 4 alignment pins shown in this figure. There are 2 at each end of the photonic crystal, the pairs being 465\,mm apart. The same alignment pins will be used to position the sensor system.
  \label{fig:connpoints}
 \end{figure}
 
 \subsection{Accuracy}
-The electron beam has a diameter of \SI{2}{\milli\meter} and the photonic crystal used in the p-FEL has a clear path of \SI{3}{\milli\meter} wide and \SI{8}{\milli\meter} high. This path is \mm{465} long. The position monitor should be able to measure with sufficient accuracy to know whether the beam would hit any solid part of the Photonic Crystal. This means a displacement of \SI{500}{\micro\meter} over a distance of \mm{465} should be measurable. As the smaller alignment errors are also influential to the operation of the pFEL, \red{ref!} an accuracy of \SI{100}{\micro\meter} is desirable.
+The electron beam has a diameter of 2\,mm and the photonic crystal used in the p-FEL has a clear path of \SI{3}{\milli\meter} wide and \SI{8}{\milli\meter} high. This path is \mm{465} long. The position monitor should be able to measure with sufficient accuracy to know whether the beam would hit any solid part of the Photonic Crystal. This means a displacement of \SI{500}{\micro\meter} over a distance of \mm{465} should be measurable. As the smaller alignment errors are also influential to the operation of the pFEL, \red{ref!} an accuracy of \SI{100}{\micro\meter} is desirable.
 
 \section{Overview of the design}
-As described in chapter \ref{sec:theory}, the BPM measures the proximity of the beam to 4 electrodes. The BPM holds these electrodes and 4 circuits that isolate the input from the output. The BPM can slide through
-These plates are held in slots in two macor disks, holding them firmly in place. The disks are positioned inside the grounded body of the sensor and held by a special screw. The signal from the plates is carried through an electronic circuit to isolate the input from the output. There are 4 circuits, one for each plate. These circuits are held on the side of the position monitor body. The body of the beam position monitor is held by an extension part (called ``inner tube'' in figure \ref{fig:designoverview}) and can slide through the outer guiding tube to measure at multiple positions. A global overview drawing can be seen in figure \ref{fig:designoverview}.
+As described in chapter \ref{sec:theory}, the BPM measures the proximity of the beam to 4 electrodes. The BPM holds these electrodes at a set position and also houses 4 circuits that isolate the input from the output. The BPM is held at the end of a narrow tube that is connected to a translation system. This way the BPM can slide through another tube that is connected with the connection points discussed before in order to have the same alignment as the PC. The set of tubes together with other structural components will be referred to as the ``guiding system''.
 
 \begin{figure}[h]
  \centering
  \includegraphics[width=500 pt]{overviewlines.pdf}
- \caption{An overview of the sensor design. The location of the electron beam is shown by the blue line.}
+ \caption{A line drawing showing an overview of the diagnostic systems design (top) and an enlarged view of the BPM (below). The location of the electron beam is shown by the blue line.\red{change ``Sensor plates'' to ``Electrodes''}}
  \label{fig:designoverview}
 \end{figure}
 
@@ -67,19 +66,19 @@ These plates are held in slots in two macor disks, holding them firmly in place.
 \begin{figure}[H]
  \centering
  \includegraphics[width=400 pt]{renderplatesdetail.png}
- \caption{(Sectioned view) The sensor plates (blue) held in place by the macor (yellow) disks. The macor has slits to hold the plates and several slits and holes to aid in evacuating any air from the system.}
+ \caption{(Sectioned view) The electrodes (blue) held in place by the macor (yellow) disks. The macor has slits to hold the plates and several slits and holes to aid in evacuating any air from the system.}
  \label{fig:plates}
 \end{figure}
 
 The plates are made of AISI 316 stainless steel by spark erosion in order to have the accuracy needed for them to fit precisely in the slits in the isolating holder disks. Also, this method of fabrication is highly reproducible, resulting in identical plate dimensions. The choice for AISI 316 was made because this material does not oxidise, is readily machinable and non-magnetic. 
 The inner radius of the plates is \mm{4} and they are \mm{1} thick. The distance to the grounded body of the sensor is \mm{0.8}.
-The holder disks (yellow in figure \ref{fig:plates}) are made of macor, a ``machinable ceramic''. It is a material commonly used as an in-vacuum electrical isolator \red{citation needed}. The macor disks have a \mm{1} deep slit of the same dimensions as the plates. The macor disks are chosen to be \mm{2} thick and \mm{11.6} in diameter. Each plate slit has an air hole of \mm{1} diameter to aid in evacuating any particles from beneath the plates. The macor also has two evacuation slits that run along the top and outer side of them. These are also meant to aid in evacuating any particles trapped in small crevices in the grounded sensor body.
-
+The holder disks (yellow in figure \ref{fig:plates}) are made of macor, a ``machinable ceramic''. It is a material commonly used as an in-vacuum electrical isolator \red{citation needed}. The macor disks have a \mm{1} deep slit of the same dimensions as the plates. The macor disks are chosen to be \mm{2} thick and \mm{11.6} in diameter. Each plate slit has an air hole of \mm{1} diameter to avoid air being trapped in narrow slits around the electrodes. The macor also has two evacuation slits that run along the top and outer side of them. These are also meant to avoid air being trapped trapped in small crevices in the grounded sensor body.
 
 \subsection{Circuit}
 \label{sec:design/circuit}
 As described in equation \ref{eq:vplatec}, the output signal is influenced by the capacitance of the plate to ground. Adding any cables to the plate also adds capacitance. The exact capacitance of these cables is not known, so the signal from one plate may be more affected than the other, leading to systematic errors in the measurement.
-Also, as the signal source is technically a charged capacitor, the signal decays over time with a lifetime of the order of the RC-time: $t_{RC} = R\cdot C$. As the plates have a low capacitance to ground of approximately 10\,pF, connecting this to a typical 1 M$\Omega$ port would mean a lifetime of 1.5\,ns. This is too short to have a good noise resistance as this requires a large number of samples to average over. See chapter \ref{sec:calibration/signal} for more information on how the signal was handled.
+Furthermore, the capacitance of these cables would be significantly larger than the capacitance of the plate to ground, greatly lowering the signal output.
+As the signal source is technically a charged capacitor, the signal decays over time with a lifetime of the order of the RC-time: $t_{RC} = R\cdot C$. As the plates have a low capacitance to ground of approximately 10\,pF, connecting this to a typical 1 M$\Omega$ port would mean a lifetime of 1.5\,ns. This is too short to have a good noise resistance as this requires a large number of samples to average over. See chapter \ref{sec:calibration/signal} for more information on how the signal was handled.
 
 To counteract this, an isolation amplifier was introduced to maintain the signal.
 The amplifier is the LT1122 from Linear Technologies. It features a very low input capacitance (4 pF) and high input impedance ($10^{12} \Omega$) while still having a large bandwidth (13 MHz) \cite{LT1122}. These traits made it the ideal choice for this circuit.
