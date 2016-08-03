@@ -2,54 +2,58 @@
 \message{This is the start of the design chapter}
 \label{sec:design}
 % This section is being re-written!!
-In this chapter the design requirements will be presented and the design will be globally explained. Afterwards the different parts of the system will be discussed in detail.
+In this chapter the design requirements will be presented and the design of the Beam Position Monitor (BPM) and the guiding system around it will be globally explained. Afterwards the different parts of the diagnostic system (BPM + guiding system) will be discussed in detail.
 
 \section{Design requirements}
-Different aspects of the pFEL system described in chapter \ref{sec:introduction} impose constraints on the position monitor described in this report. These requirements will be discussed in the subsections below.
+Different aspects of the pFEL described in chapter \ref{sec:introduction} impose constraints on the position monitor described in this report. These requirements will be discussed in the subsections below.
 
 \subsection{Ultra-High vacuum}
-The pFEL relies on an electron beam as power input. This beam is generated from a thermionic cathode, meaning that a tungsten surface is heated to high temperatures so that, together with the applied electric field, electrons have enough energy to escape the material. To allow this effect, the tungsten is coated, typically with a mixture of Barium, Strontium and Calcium oxides. As this coating has a lower work-function at the surface, electrons need less energy to escape the material. Therefore there will be more electrons being emitted, resulting in a higher output current.
+The pFEL relies on an electron beam as gain medium. This beam is generated from a thermionic cathode, meaning that a tungsten surface is heated to high temperatures so that, together with the applied electric field, electrons have sufficient kinetic energy to overcome the surface barrier (the height of which is defined by the work-function) and thus escape the material. To reduce the necessary temperature, the cathode surface is covered by a mixture of Barium, Strontium and Calcium oxides. As this coating has a lower work-function at the surface, electrons are more stimulated to escape the material.
 If the coating layer is contaminated by other materials, the work function increases and the current will decrease down to non-functional limits. Therefore, the electron gun must always be kept from any pollutants, practically meaning the cathode has to be kept in an ultra-high vacuum chamber.
 
-Not all materials are a negative influence on the cathode performance. However, oxygen and water vapour are prime examples of polluting gases. At the high temperature of the cathode, carbohydrates break  down and some of the constituents are also polluting.
+Not all materials have a negative influence on the cathode performance. However, the presence of oxygen and water vapour results in a rapid degradation of the electron emission.\red{citation?} At the high temperature of the cathode, carbohydrates break  down and some of the constituents are also polluting.
 Since the exact effect of all possible gases is not known, all gases except pure nitrogen are considered polluting.
 
-At low pressure, many materials start to evaporate even at room temperature. This pressure is referred to as vapour pressure\footnote{Technically speaking, the vapour pressure is dependent on temperature. Higher temperature means higher vapour pressure. In this context we assume room temperature.}
+At low pressure, many materials start to evaporate even at room temperature. This pressure is referred to as vapour pressure.\footnote{Technically speaking, the vapour pressure is dependent on temperature. Higher temperature means higher vapour pressure. In this context we assume room temperature.}
 Plastics generally contain many different compounds, some of which have a high vapour pressure. Also, some water may be absorbed in the plastic.
-Natural materials such as paper, string etc. contain water and/or oil that evaporates.
-Metals and ceramics generally have low vapour pressures, but generally have a rough surface. In the case of metals this is usually an oxide layer that forms in air and in the case of ceramics it is usually due to the fabrication method. \red{REF?} This porous surface can then contain a large amount of water, oil or other high vapour pressure materials that will evaporate slowly, yet fast enough to have a significant effect on the vacuum pressure. If the surface has been properly treated mechanically or chemically, in some cases the surface can be made ``smooth''.
+Natural materials such as paper, wood etc. contain water and/or oil that evaporates.
+Metals and ceramics typically have low vapour pressures, but these may have a rough surface formed by oxidation, machining or by the fabrication method. This porous surface can then contain a large amount of water, oil or other high vapour pressure materials that will evaporate slowly, yet fast enough to have a significant effect on the vacuum pressure. If the surface has been properly treated mechanically or chemically, in some cases the surface can be made ``smooth''.
 
 However, even when a surface is smooth there will still be water vapour from the air as well as possible contaminants from fabrication on the surface. 
 %These would then slowly evaporate when in the vacuum, reducing the quality of the vacuum for the time they are there. The pumping down time may become longer than the experiment allows. \textcolor{red}{REF?}
-To evaporate these, the vacuum chamber is generally heated to between \SI{100}{\degreeCelsius} and \SI{250}{\degreeCelsius}. This procedure, generally known as ``bake-out'', increases the evaporation rate, increasing the rate at which water vapour and other gases are pumped out of the vacuum chamber.
+To evaporate these, the vacuum chamber is generally heated to between \SI{100}{\degreeCelsius} and \SI{250}{\degreeCelsius}. This procedure, generally known as ``bake-out'', increases the evaporation rate, consequently increasing the rate at which water vapour and other gases are pumped out of the vacuum chamber.
 
-To summarize, the fact that the system is in vacuum places two constraints. Firstly a pressure of $10^{-8}$ mbar must be reached within a week of pumping and bake-out, so only certain metals, certain ceramics, glass and a few specifically built plastics are allowed. 
+Therefore, the materials used in the beam position monitor must fulfill the following requirements. Firstly, their vapour pressure must be extremely low. Secondly, the materials must be able to withstand temperatures of up to \SI{150}{\degreeCelsius}. These two constraints should allow the system to reach a workable vacuum pressure of $5\cdot 10^{-8} within one week of pumping and bake-out. 
+
+\red{I put the ``one week until pressure x'' here to have a measurable requirement. If I just say ``low'' vapour pressure, I don't know at the end of the line whether my design was good enough}
 %PLACE IN AN APPENDIX ON THE CLEANING PROCEDURE: The diagnostics system must be cleaned thoroughly to make sure no contaminants are present, so the materials used must also be resistant to water, ultrasonic cleaning methods and cleaning agents.
 
-The second constraint is of temperature resistance. In order to bake-out the vacuum chamber, the diagnostic system must be able to handle temperatures up to \SI{150}{\degreeCelsius}. The high temperature is only applied during bake-out and not necessary during operation.
-The temperature constraint is not strictly necessary, but decreases the pump-down time (the time it takes for the vacuum chamber and its contents to reach the desired low pressure) and therefore desirable. 
-
 \subsection{Size and shape constraints}
-The position monitor system has to fit inside the \SI{30}{\milli\meter} diameter vacuum tube where also two molybdenum guiding rails are present. In figure \ref{fig:vacuumtube} a schematic drawing is shown of the tube the system should fit through.
+The beam position monitor (BPM) has to fit inside the 30\,mm diameter vacuum tube where also two molybdenum guiding rails are running through (as can be seen in figure \ref{fig:vacuumtube}). These rails are used to guide any structure (such as a photonic crystal) into the vacuum tube during assembly. These rails are necessary to roughly align the inserted structure with special guiding pin holes near the cathode (at the far end of the tube) that ensure the fine alignment.
 \begin{figure}[h]
  \centering
  \includegraphics[width=200 pt]{vactubecut.png}
- \caption{A cut-out showing the sizes of the vacuum tube and the molybdenum guiding rails. The diagnostic system should fit inside a tube with these sizes.}
+ \caption{A cross-section showing the vacuum tube and the molybdenum guiding rails. The diagnostic system should fit inside a tube with the guiding rails present.}
  \label{fig:vacuumtube}
 \end{figure}
-The electron beam position must be measured with respect to the photonic crystal, so the diagnostics system should use the same connection points. This way, when the beam has been aligned with respect to the diagnostic system, the photonic crystal can be re-inserted using the same connection points. This way the alignment is preserved. The connection points are shown in figure \ref{fig:connpoints}
+
+The electron beam position must be measured with respect to the photonic crystal (PC), even though the BPM does not fit inside the vacuum tube simultaneously with the PC. Therefore, the diagnostics system should use the same connection points that are also used by the PC. This way, when the beam has been aligned with respect to the BPM, the BPM can be exchanged for the PC and the alignment would be conserved i.e. the PC will still be aligned. 
+There are 4 connection points, located in pairs (as can be seen in figure \ref{fig:connpoints}). 2 are near the cathode and 2 are near the exit window. The connection points are 3\,mm diameter holes placed with high precision with respect to the cathode. A similar set of holes is made in the PC and small pins are inserted in order to keep the PC in place.
+Obviously, the guiding system for the BPM should have the same guiding pin locations.
+The positions of the connection pointsshown in figure \ref{fig:connpoints}
 \begin{figure}[H]
  \centering
  \includegraphics[width=400 pt]{connpoints.png}
- \caption{The photonic crystal is positioned using 4 alignment pins shown in this figure. There are 2 at each end of the photonic crystal, the pairs being \mm{465} apart. The same alignment pins will be used to position the sensor system. \red{also mention this in text}}
+ \caption{The photonic crystal is positioned using 4 alignment pins shown in this figure. There are 2 at each end of the photonic crystal, the pairs being \mm{465} apart. The same alignment pins will be used to position the sensor system.
  \label{fig:connpoints}
 \end{figure}
 
 \subsection{Accuracy}
-The beam has a diameter of \SI{2}{\milli\meter} and the photonic crystal discussed in chapter \ref{sec:introduction} has a clear path of \SI{3}{\milli\meter} wide and \SI{8}{\milli\meter} high. This path is \mm{465} long. The position monitor should be able to measure with sufficient accuracy to know whether the beam would hit any solid part of the Photonic Crystal. This means an error of \SI{500}{\micro\meter} over a distance of \mm{465} should be measurable. As the smaller alignment errors are also influential to the operation of the pFEL, \red{ref!} an accuracy of \SI{100}{\micro\meter} is desirable.
+The electron beam has a diameter of \SI{2}{\milli\meter} and the photonic crystal used in the p-FEL has a clear path of \SI{3}{\milli\meter} wide and \SI{8}{\milli\meter} high. This path is \mm{465} long. The position monitor should be able to measure with sufficient accuracy to know whether the beam would hit any solid part of the Photonic Crystal. This means a displacement of \SI{500}{\micro\meter} over a distance of \mm{465} should be measurable. As the smaller alignment errors are also influential to the operation of the pFEL, \red{ref!} an accuracy of \SI{100}{\micro\meter} is desirable.
 
 \section{Overview of the design}
-As described in chapter \ref{sec:theory}, the diagnostic system works by measuring the proximity of the beam to 4 plates. These plates are held in slots in two macor disks, holding them firmly in place. The disks are positioned inside the grounded body of the sensor and held by a special screw. The signal from the plates is carried through an electronic circuit to isolate the input from the output. There are 4 circuits, one for each plate. These circuits are held on the side of the position monitor body. The body of the beam position monitor is held by an extension part (called ``inner tube'' in figure \ref{fig:designoverview}) and can slide through the outer guiding tube to measure at multiple positions. A global overview drawing can be seen in figure \ref{fig:designoverview}.
+As described in chapter \ref{sec:theory}, the BPM measures the proximity of the beam to 4 electrodes. The BPM holds these electrodes and 4 circuits that isolate the input from the output. The BPM can slide through
+These plates are held in slots in two macor disks, holding them firmly in place. The disks are positioned inside the grounded body of the sensor and held by a special screw. The signal from the plates is carried through an electronic circuit to isolate the input from the output. There are 4 circuits, one for each plate. These circuits are held on the side of the position monitor body. The body of the beam position monitor is held by an extension part (called ``inner tube'' in figure \ref{fig:designoverview}) and can slide through the outer guiding tube to measure at multiple positions. A global overview drawing can be seen in figure \ref{fig:designoverview}.
 
 \begin{figure}[h]
  \centering
