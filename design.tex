@@ -29,6 +29,7 @@ Therefore, the materials used in the beam position monitor must fulfill the foll
 %PLACE IN AN APPENDIX ON THE CLEANING PROCEDURE: The diagnostics system must be cleaned thoroughly to make sure no contaminants are present, so the materials used must also be resistant to water, ultrasonic cleaning methods and cleaning agents.
 
 \subsection{Size and shape constraints}
+\label{sec:design/sizeshape}
 The beam position monitor (BPM) has to fit inside the 30\,mm diameter vacuum tube where also two molybdenum guiding rails are running through (as can be seen in figure \ref{fig:vacuumtube}). These rails are used to guide any structure (such as a photonic crystal) into the vacuum tube during assembly. These rails are necessary to roughly align the inserted structure with special guiding pin holes near the cathode (at the far end of the tube) that ensure the fine alignment.
 \begin{figure}[h]
  \centering
@@ -52,41 +53,54 @@ The positions of the connection pointsshown in figure \ref{fig:connpoints}
 The electron beam has a diameter of 2\,mm and the photonic crystal used in the p-FEL has a clear path of \SI{3}{\milli\meter} wide and \SI{8}{\milli\meter} high. This path is \mm{465} long. The position monitor should be able to measure with sufficient accuracy to know whether the beam would hit any solid part of the Photonic Crystal. This means a displacement of \SI{500}{\micro\meter} over a distance of \mm{465} should be measurable. As the smaller alignment errors are also influential to the operation of the pFEL, \red{ref!} an accuracy of \SI{100}{\micro\meter} is desirable.
 
 \section{Overview of the design}
-As described in chapter \ref{sec:theory}, the BPM measures the proximity of the beam to 4 electrodes. The BPM holds these electrodes at a set position and also houses 4 circuits that isolate the input from the output. The BPM is held at the end of a narrow tube that is connected to a translation system. This way the BPM can slide through another tube that is connected with the connection points discussed before in order to have the same alignment as the PC. The set of tubes together with other structural components will be referred to as the ``guiding system''.
+As described in chapter \ref{sec:theory}, the BPM measures the proximity of the beam to 4 electrodes. The BPM holds these electrodes at a set position and also houses 4 circuit boards (PCB's) that isolate the input from the output. The BPM is held at the end of a narrow tube that is connected to a translation system. This way the BPM can slide through another tube that is connected with the connection points discussed before in order to have the same alignment as the PC. The set of tubes together with other structural components will be referred to as the ``guiding system''.
+
+The BPM consists mostly of the sensor body, which can be seen in figure \ref{fig:designfinal}. This part is functions as the grounded surface behind the sensor electrodes as mentioned in chapter \ref{sec:theory} and it shields the PCB's from the effects of a high-power electron beam.
+It is made from aluminium and has a carefully machined hole in the top to house the electrode holders. On the sides there are four milled surfaces with tapped holes to hold the PCB's . On the back there are two threaded holes for the inner tube that is used to hold the sensor and move it when necessary. 
+In figure \ref{fig:designfinal} two of the four wire holes can be seen. These holes are used to feed the bare copper wires that run from the sensor electrodes to the PCB's.
+The sensor body features four circular surfaces that slide through the guidance tube. These are at the front and at the back.
 
 \begin{figure}[h]
  \centering
  \includegraphics[width=500 pt]{overviewlines.pdf}
- \caption{A line drawing showing an overview of the diagnostic systems design (top) and an enlarged view of the BPM (below). The location of the electron beam is shown by the blue line.\red{change ``Sensor plates'' to ``Electrodes''}}
+ \caption{A line drawing showing an overview of the diagnostic systems design (top) and an enlarged view of the BPM (below). The location of the electron beam is shown by the blue line.\red{change ``Sensor electrodes'' to ``Electrodes''}}
  \label{fig:designoverview}
 \end{figure}
 
-\subsection{Plates and plate holders}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=220 pt]{renderfull4.png}
+  \includegraphics[width=220 pt]{rendersection1.png}
+  \caption{\red{REDO RENDER ON THE RIGHT} Renders of the final design. The left figure shows the PCB on the outside but also a set of screws that could be used to clamp a cable instead of using the PCB. On the right figure the position monitor has been cut in half, the location of the sensor electrodes can be seen at the top.}
+  \label{fig:designfinal}
+\end{figure}
+
+\subsection{Electrodes and electrode holders}
 
 \begin{figure}[H]
  \centering
  \includegraphics[width=400 pt]{renderplatesdetail.png}
- \caption{(Sectioned view) The electrodes (blue) held in place by the macor (yellow) disks. The macor has slits to hold the plates and several slits and holes to aid in evacuating any air from the system.}
+ \caption{(Sectioned view) The electrodes (blue) held in place by the macor (yellow) disks. The macor has slits to hold the electrodes and several slits and holes to aid in evacuating any air from the system.}
  \label{fig:plates}
 \end{figure}
 
-The plates are made of AISI 316 stainless steel by spark erosion in order to have the accuracy needed for them to fit precisely in the slits in the isolating holder disks. Also, this method of fabrication is highly reproducible, resulting in identical plate dimensions. The choice for AISI 316 was made because this material does not oxidise, is readily machinable and non-magnetic. 
-The inner radius of the plates is \mm{4} and they are \mm{1} thick. The distance to the grounded body of the sensor is \mm{0.8}.
-The holder disks (yellow in figure \ref{fig:plates}) are made of macor, a ``machinable ceramic''. It is a material commonly used as an in-vacuum electrical isolator \red{citation needed}. The macor disks have a \mm{1} deep slit of the same dimensions as the plates. The macor disks are chosen to be \mm{2} thick and \mm{11.6} in diameter. Each plate slit has an air hole of \mm{1} diameter to avoid air being trapped in narrow slits around the electrodes. The macor also has two evacuation slits that run along the top and outer side of them. These are also meant to avoid air being trapped trapped in small crevices in the grounded sensor body.
+The electrodes are made of AISI 316 stainless steel by spark erosion in order to have the accuracy needed for them to fit precisely in the slits in the isolating holder disks. Also, this method of fabrication is highly reproducible, resulting in identical electrode dimensions. The choice for AISI 316 was made because this material does not oxidise, is readily machinable and non-magnetic. 
+The inner radius of the electrodes is \mm{4} and they are \mm{1} thick. The distance to the grounded body of the sensor is \mm{0.8}.
+The holder disks (yellow in figure \ref{fig:plates}) are made of macor, a ``machinable ceramic''. It is a material commonly used as an in-vacuum electrical isolator \red{citation needed}. The macor disks have a \mm{1} deep slit of the same dimensions as the electrodes. The macor disks are chosen to be \mm{2} thick and \mm{11.6} in diameter. Each electrode slit has an air hole of \mm{1} diameter to avoid air being trapped in narrow slits around the electrodes. The macor also has two evacuation slits that run along the top and outer side of them. These are also meant to avoid air being trapped trapped in small crevices in the grounded sensor body.
 
 \subsection{Circuit}
 \label{sec:design/circuit}
-As described in equation \ref{eq:vplatec}, the output signal is influenced by the capacitance of the plate to ground. Adding any cables to the plate also adds capacitance. The exact capacitance of these cables is not known, so the signal from one plate may be more affected than the other, leading to systematic errors in the measurement.
-Furthermore, the capacitance of these cables would be significantly larger than the capacitance of the plate to ground, greatly lowering the signal output.
-As the signal source is technically a charged capacitor, the signal decays over time with a lifetime of the order of the RC-time: $t_{RC} = R\cdot C$. As the plates have a low capacitance to ground of approximately 10\,pF, connecting this to a typical 1 M$\Omega$ port would mean a lifetime of 1.5\,ns. This is too short to have a good noise resistance as this requires a large number of samples to average over. See chapter \ref{sec:calibration/signal} for more information on how the signal was handled.
+As described in equation \ref{eq:vplatec}, the output signal is influenced by the capacitance of the electrode to ground. Attaching any cables to the electrode also adds capacitance. The exact capacitance of these cables is not known, so the signal from one electrode may be more affected than the other, leading to systematic errors in the measurement.
+Furthermore, the capacitance of these cables would be significantly larger than the capacitance of the electrode to ground, greatly lowering the signal output.
+As the signal source is technically a charged capacitor, the signal decays over time with a lifetime of the order of the RC-time: $t_{RC} = R\cdot C$. As the electrodes have a low capacitance to ground of approximately 10\,pF, connecting this to a typical 1 M$\Omega$ port would mean a lifetime of \SI{10}{\micro\second}. Since there is expected to be noise in the measured potential, the potential is average over time. However, if the potential significantly decays over that time, this is not possible.
 
-To counteract this, an isolation amplifier was introduced to maintain the signal.
-The amplifier is the LT1122 from Linear Technologies. It features a very low input capacitance (4 pF) and high input impedance ($10^{12} \Omega$) while still having a large bandwidth (13 MHz) \cite{LT1122}. These traits made it the ideal choice for this circuit.
-Since most electronic parts contain resin, plastic and/or other polluting materials, the circuit (figure \ref{fig:circuit_opamp}) was designed with as little components as possible while still maintaining good signal quality and performance. Therefore, the isolation circuit has unity amplification. 
-Two capacitors (of 10\,nF) were added to reduce noise in the power supply lines. An output resistor (\SI{67}{\ohm}) was used to limit the current through the output. This was found to have a positive effect on the stability of the circuit.
+To counteract the influence of any cables attached to the electrodes, an isolation amplifier was introduced to maintain the signal.
+The amplifier is the LT1122 from Linear Technologies. It features a very low input capacitance (4\,pF) and high input impedance ($10^{12}\,\Omega$) while still having a large bandwidth (13\,MHz) \cite{LT1122}. These properties made it the ideal choice for this circuit.
+Since most electronic parts contain resin, plastic and/or other poisoning materials, the circuit (figure \ref{fig:circuit_opamp}) was designed with as little components as possible while still maintaining good signal quality and performance. Therefore, the isolation circuit has unity amplification. %I don't like the term ``poisoning''
+Two capacitors (of 10\,nF) were added to reduce noise in the power supply lines as any noise on the supply voltage of the amplifiers would also be present in the output signal. An output resistor (\SI{67}{\ohm}) was used to limit the current through the output. This was found to have a positive effect on the stability of the circuit.
 
-In order to have the best possible vacuum performance, the circuit was printed on Rogers 5350 board of \mm{0.25} thick. The normal green FR4 board material is a very porous material that therefore is not UHV-compatible, while the Rogers, being a mixture of plastic and ceramic, is more suited for UHV applications (smooth surface, low vapour pressure) \red{citation needed}.
-As the bottom side of the PCB was close to the metal sensor body, the PCB containing the circuit was designed without any vias. All components were Surface-mounted (SMD) in order to both reduce their footprint area as well as make sure no vias were necessary.
+The typical green FR4 board material is very porous and therefore not UHV-copatible. In order to have the best possible vacuum performance, the circuit was printed on Rogers 4350 board of \mm{0.25} thick. The Rogers, being a mixture of plastic and ceramic, is more suited for UHV applications (smooth surface, low vapour pressure) \red{citation needed}.
+As the bottom side of the PCB was close to the metal sensor body, the PCB containing the circuit was designed without any vias. All components were of the SMD (Surface-Mounted Device) type in order to both reduce their footprint area as well as make sure no vias were necessary.
 
 The solder mask and isolating layer that are usually employed were left out as these are lacquer or plastic coatings that may have higher vapour pressures.
 As the copper tracks on the PCB could oxidise and leave a porous layer, the copper was gold-plated.\footnote{also, this looks way cooler}
@@ -97,7 +111,7 @@ All parts were soldered using lead-free solder and afterwards the PCB was cleane
  \begin{circuitikz}[american voltages]
  \draw
    (0,0) node [op amp] (opamp) {}
-   (-2,-0.5) to [short, -, o-, l=input] (-2,-0.5) 
+   (-2,-0.5) to [short, -, o-, l=Input] (-2,-0.5) 
     |- (opamp.+)
    (opamp.-) |- (0,1.5) -| (opamp.out)
     to [R, *-] (3,0)
@@ -116,28 +130,15 @@ All parts were soldered using lead-free solder and afterwards the PCB was cleane
  \draw (4,-1) node [right] {Ground};
  \draw (4,-2) node [right] {$V_-$};
  \end{circuitikz}
- \caption{The isolation circuit used.}
+ \caption{The isolation circuit used. Each electrode was connected to its own circuit at the ``Input'' terminal.}
  \label{fig:circuit_opamp}
 \end{figure}
-The wire connecting the circuit to the plate was bare copper. The soldering was aided by an acidic solution \red{WHAT IS IN THE BLUE BOTTLE IN THE WORKSHOP IT WORKS MIRACLES} to etch the top layer and secure a mechanically strong connection. 
+The wire connecting the circuit to the electrode was bare copper. The soldering was aided by S39 flux, an acidic solution used to etch the top layer of the electrode where it is to be soldered and secure a both mechanically and electrically strong connection. 
 
-\subsection{Sensor housing}
-The macor disks, the plates between them, a special screw on top to hold them together and the four PCB's are all connected to the sensor body. This part functions as the body of the device, but is also the grounded surface behind the sensor plates and it shields the electronics from the effects of a high-power electron beam.
-It is made from aluminium and has a carefully machined hole in the top to house the plate holders. On the sides there are four milled surfaces with tapped holes to hold the PCB's. On the back there are two threaded holes for the moving inner tube that is used to hold the sensor. 
-In figure \ref{fig:designfinal} two of the four wire holes can be seen. These holes are used to feed the bare copper wires that run from the sensor plates to the PCB's.
-The sensor body features four circular surfaces that slide through the guidance tube. These are at the front and at the back. \red{should I label these in the figure?}
-\begin{figure}
-  \centering
-  \includegraphics[width=220 pt]{renderfull4.png}
-  \includegraphics[width=220 pt]{rendersection1.png}
-  \caption{\red{REDO RENDER ON THE RIGHT} Renders of the final design. The left figure shows the PCB on the outside but also a set of screws that could be used to clamp a cable instead of using the PCB. On the right figure the position monitor has been cut in half, the location of the sensor plates can be seen at the top.}
-  \label{fig:designfinal}
-\end{figure}
+\subsection{Guiding system}
+The sensor body is held at the end of a tube by two screws. The tube is made of AISI 316 stainless steel and has been perforated along the length to reduce the pump-down time. The inner tube is holds the BPM on one side and is connected to a translation arm on the other. This way, it holds the BPM in place and can move the BPM when desired.
 
-\subsection{Outer and inner tubes}
-The sensor body is held at the end of a tube by two screws. The tube is made of AISI 316 stainless steel and has been perforated along the length to allow easier evacuation. The inner tube only functions as an extension of the translation arm as the translation arm used is too wide to be inserted into the magnet.
-
-The outer tube has the connection points shown in figure \ref{fig:connpoints}. It is 465mm long and the inside has the exact same diameter as the outside parts of the sensor housing. This way the position monitor can slide through the outer tube by pushing and pulling the inner tube while maintaining a well-defined lateral position.
+The outer tube has the connection points discussed in section \ref{sec:design/sizeshape} to match up with the alignment of the PC. It is 465\,mm long and the inside has the exact same diameter as the outside parts of the sensor housing. This way the position monitor can slide through the outer tube by pushing and pulling the inner tube while maintaining a well-defined and correct position of the BPM.
 
 %------------------------------------------------------------------------------------
 %-------------   OLD VERSION (parts will be cut and/or greyed):   -------------------
@@ -175,11 +176,11 @@ The outer tube has the connection points shown in figure \ref{fig:connpoints}. I
 %\begin{figure}[h]
 	%\centering
 	%\includegraphics[scale=1]{rendervertcutsensor.png}
-	%\caption{Cutout of the position monitor showing the sensor plates (blue), isolation (yellow) and grounded body (green).}
+	%\caption{Cutout of the position monitor showing the sensor electrodes (blue), isolation (yellow) and grounded body (green).}
 	%\label{fig:CutSensorSurfaces}
 %\end{figure}
 
-% Here, "Sensor" is the thing that actually "senses" the beam proximity. This means the plate that will have an induced charge. Obviously, terms such as "sensor electronics" and such can be used.
+% Here, "Sensor" is the thing that actually "senses" the beam proximity. This means the electrode that will have an induced charge. Obviously, terms such as "sensor electronics" and such can be used.
 
 %\subsubsection{Sensor Guidance}
 %\label{sec:design/steps/guidance}
@@ -204,9 +205,9 @@ The outer tube has the connection points shown in figure \ref{fig:connpoints}. I
 
 %The outside of the position monitor is designed to fit exactly into the tube. Any tolerance is a direct inaccuracy for measurement. 
 
-%\subsubsection{Sensor plates}
+%\subsubsection{Sensor electrodes}
 %\label{sec:design/steps/plates}
-%As discussed in chapter \ref{sec:theory}, the sensor plates need to be close to a grounded plate. However, they must be isolated from the grounded plate and each other. The first option considered was to have an isolating ceramic tube with notches made where the sensor plates would be, as seen in figure \ref{fig:designv1}. The plates would then be glued to the ceramic. The vacuum tube would serve as the ground plate behind the sensor plates.
+%As discussed in chapter \ref{sec:theory}, the sensor electrodes need to be close to a grounded electrode. However, they must be isolated from the grounded electrode and each other. The first option considered was to have an isolating ceramic tube with notches made where the sensor electrodes would be, as seen in figure \ref{fig:designv1}. The electrodes would then be glued to the ceramic. The vacuum tube would serve as the ground electrode behind the sensor electrodes.
 %\begin{figure}[H]
 % \centering
 % \includegraphics[scale=0.3]{designv1.PNG}
@@ -216,33 +217,33 @@ The outer tube has the connection points shown in figure \ref{fig:connpoints}. I
 
 %This approach would have two main drawbacks, firstly the distance between the vacuum tube and the position monitor is not well-defined, as the vacuum tube is not connected to the movable flange on the output side but to a translation stage (see section \ref{sec:design/steps/guidance}). Secondly, this design relies on glue. There are special types of epoxy resin that are specifically designed to be used in UHV, but still these increase pump-down times \textcolor{red}{REF?} and were avoided. In this design, the movement axis was thought to be designed by an external translation stage.
 
-%The second iteration of the design relied on a ground plate that would move along with the sensor plates. Any electronics or cable connections could be attached to this ground plate. Also, as the ground plate would move along with the system, their distance to the sensor plates can be defined accurately.
-%In this design, shown in figure \ref{fig:designv2} the grounded plate would form the body of the position monitor (shown in green). It features a threaded hole in the front. The isolation parts (shown in yellow) would be threaded on the outside to allow them to be firmly attached inside the grounded body of the sensor. To make sure the plates could be fixed at any given (rotational) position, a metal rectifier plate with thread would be screwed in first (shown in red). The lower isolating part would then be screwed on top of the rectifier. By positioning the rectifier using a hexagonal screwdriver, the plates (shown in grey) can be fastened in any orientation. \\
+%The second iteration of the design relied on a ground electrode that would move along with the sensor electrodes. Any electronics or cable connections could be attached to this ground electrode. Also, as the ground electrode would move along with the system, their distance to the sensor electrodes can be defined accurately.
+%In this design, shown in figure \ref{fig:designv2} the grounded electrode would form the body of the position monitor (shown in green). It features a threaded hole in the front. The isolation parts (shown in yellow) would be threaded on the outside to allow them to be firmly attached inside the grounded body of the sensor. To make sure the electrodes could be fixed at any given (rotational) position, a metal rectifier electrode with thread would be screwed in first (shown in red). The lower isolating part would then be screwed on top of the rectifier. By positioning the rectifier using a hexagonal screwdriver, the electrodes (shown in grey) can be fastened in any orientation. \\
 %However, the shape of the isolation would be hard to fabricate and as the material chosen is brittle, machining thread would most likely fail. Also, the tolerances of screw thread would create an error in the location measurement.\\
 %\begin{figure}[h]
 % \centering
 % \includegraphics[scale=1]{renderdesignv2,1.png}
-% \caption{(sectioned view) The two isolating plates (yellow) would be threaded on the outside and pressed together mechanically, holding the plates (blue) in a fixed position near a grounded plate (green). Also shown are the holes for the cable connecting the plates to the outside.}
+% \caption{(sectioned view) The two isolating electrodes (yellow) would be threaded on the outside and pressed together mechanically, holding the electrodes (blue) in a fixed position near a grounded electrode (green). Also shown are the holes for the cable connecting the electrodes to the outside.}
 % \label{fig:designv2}
 %\end{figure}
 %\\
 %A slightly different approach was chosen. The isolating parts would be made smooth on the outside and slid into the grounded main body of the sensor.
-%The isolation would then be pushed down not by its own thread but by a special screw on top of it with a hole to allow the electrons to go through unobstructed. As the isolation can be freely rotated, it can easily be placed in the right orientation for the plates to align with the holes for the signal wire before fastening it.
+%The isolation would then be pushed down not by its own thread but by a special screw on top of it with a hole to allow the electrons to go through unobstructed. As the isolation can be freely rotated, it can easily be placed in the right orientation for the electrodes to align with the holes for the signal wire before fastening it.
 %The isolating parts are fitted with a number of small slots and holes to allow easier evacuation of air from the small crevices created in this design.
 %\begin{figure}[H]
 % \centering
 % \includegraphics[scale=.8]{renderdesignfinal1,1.png}
-% \caption{(sectioned view) Final design. The two isolating parts (yellow) are equipped with slots, holding the plates (blue) in a fixed position near the grounded sensor body (green). The top isolation is pushed down by a threaded holder (red).}
+% \caption{(sectioned view) Final design. The two isolating parts (yellow) are equipped with slots, holding the electrodes (blue) in a fixed position near the grounded sensor body (green). The top isolation is pushed down by a threaded holder (red).}
 % \label{fig:designfinal1}
 %\end{figure}
 
 %\subsubsection{Electronics}
 %\label{sec:design/steps/electronics}
-%According to the model described in chapter \ref{sec:theory}, the sensor output is dependent on the capacity of the plate with respect to ground. This means that attaching a cable to the plate changes this capacity and so the measured signal from the sensor. If two sensor plates have different lengths of cables attached, the output would be different. To prevent this, two options were considered. Firstly, attaching matched-length cables is an option. Attaching an electronic buffer circuit directly behind the sensor plate is a second option. 
+%According to the model described in chapter \ref{sec:theory}, the sensor output is dependent on the capacity of the electrode with respect to ground. This means that attaching a cable to the electrode changes this capacity and so the measured signal from the sensor. If two sensor electrodes have different lengths of cables attached, the output would be different. To prevent this, two options were considered. Firstly, attaching matched-length cables is an option. Attaching an electronic buffer circuit directly behind the sensor electrode is a second option. 
 
 %The matched-cable length option was omitted because this would introduce fabrication problems as the cable connections were custom and hand-made, it can not be quaranteed that the length of the cable remains exactly equal.
 
-%As there is very little room between the guiding system and the beam, the circuit would have to be small. To make sure the cable lengths were equal on all sides and minimized, there would be four small buffer circuits, one for each sensor plate. Each circuit would contain an operational amplifier, an output resistor and two capacities for power stabilization. 
+%As there is very little room between the guiding system and the beam, the circuit would have to be small. To make sure the cable lengths were equal on all sides and minimized, there would be four small buffer circuits, one for each sensor electrode. Each circuit would contain an operational amplifier, an output resistor and two capacities for power stabilization. 
 %To connect the system to the outside world, an option for a custom connector was considered but refused because it would make the circuit too big.
 %In total, six connections would be made; 
 %\begin{itemize*}
@@ -254,7 +255,7 @@ The outer tube has the connection points shown in figure \ref{fig:connpoints}. I
 % \item offset negative
 % \item offset positive
 %\end{itemize*} 
-%The offset pins can be used to eliminate a non-zero DC signal output when there is zero as input. However, these were not used as this offset was eliminated in the signal processing after measurement. The input was placed on one side of the board, in order to be close to the sensor plates. The output and other connector pads were placed at the other side, to make connecting easier and to eliminate possible interference with the input signal.
+%The offset pins can be used to eliminate a non-zero DC signal output when there is zero as input. However, these were not used as this offset was eliminated in the signal processing after measurement. The input was placed on one side of the board, in order to be close to the sensor electrodes. The output and other connector pads were placed at the other side, to make connecting easier and to eliminate possible interference with the input signal.
 %\begin{figure}[h]
 % \centering
 % \begin{subfigure}{\textwidth}
@@ -278,7 +279,7 @@ The outer tube has the connection points shown in figure \ref{fig:connpoints}. I
 
 %\subsection{Final design}
 %The position monitor body could slide into the guiding tube because it has the same outer diameter as the inner diameter of the tube. The position monitor has one surface at the front and one in the back where it touches the tube. The back of the monitor also has two screw holes for fastening an extension tube, connected to a linear translation stage. This stage however is loosely connected to the monitor; it does not supply a translation axis, only position. \\
-%The circuit is connected to the sensor body using three titanium screws at the positions of the x's in figure \ref{fig:circuit}. A copper wire was soldered to each plate and connected through the hole to the input pad on each circuit board (not shown in figures). The final design is shown in figure \ref{fig:designfinalfull} . On the top and bottom are two circular surfaces, these would slide through the guiding tube.
+%The circuit is connected to the sensor body using three titanium screws at the positions of the x's in figure \ref{fig:circuit}. A copper wire was soldered to each electrode and connected through the hole to the input pad on each circuit board (not shown in figures). The final design is shown in figure \ref{fig:designfinalfull} . On the top and bottom are two circular surfaces, these would slide through the guiding tube.
 %\begin{figure}[h]
 % \centering
 % \includegraphics[scale=1.3]{renderfull4.PNG}
