@@ -97,7 +97,7 @@ As the signal source is technically a charged capacitor, the signal decays over 
 To counteract the influence of any cables attached to the electrodes, an isolation amplifier was introduced to maintain the signal.
 The amplifier is the LT1122 from Linear Technologies. It features a very low input capacitance (4\,pF) and high input impedance ($10^{12}\,\Omega$) while still having a large bandwidth (13\,MHz) \cite{LT1122}. These properties made it the ideal choice for this circuit.
 Since most electronic parts contain resin, plastic and/or other poisoning materials, the circuit (figure \ref{fig:circuit_opamp}) was designed with as little components as possible while still maintaining good signal quality and performance. Therefore, the isolation circuit has unity amplification. %I don't like the term ``poisoning''
-Two capacitors (of 10\,nF) were added to reduce noise in the power supply lines as any noise on the supply voltage of the amplifiers would also be present in the output signal. An output resistor (\SI{67}{\ohm}) was used to limit the current through the output. This was found to have a positive effect on the stability of the circuit.
+Two capacitors (of 10\,nF) were added to reduce noise in the power supply lines as any noise on the supply voltage of the amplifiers would also be present in the output signal. A schottky diode was also added to the input of the circuit in order to protect the amplifier from voltages above (or below) its maximum rated input. It was later found that this was detrimental to the signal quality as the diode has a lower impedance. An output resistor (\SI{67}{\ohm}) was used to limit the current through the output. This was found to have a positive effect on the stability of the circuit.
 
 The typical green FR4 board material is very porous and therefore not UHV-copatible. In order to have the best possible vacuum performance, the circuit was printed on Rogers 4350 board of \mm{0.25} thick. The Rogers, being a mixture of plastic and ceramic, is more suited for UHV applications (smooth surface, low vapour pressure) \red{citation needed}.
 As the bottom side of the PCB was close to the metal sensor body, the PCB containing the circuit was designed without any vias. All components were of the SMD (Surface-Mounted Device) type in order to both reduce their footprint area as well as make sure no vias were necessary.
@@ -111,7 +111,7 @@ All parts were soldered using lead-free solder and afterwards the PCB was cleane
  \begin{circuitikz}[american voltages]
  \draw
    (0,0) node [op amp] (opamp) {}
-   (-2,-0.5) to [short, -, o-, l=Input] (-2,-0.5) 
+   (-2,-0.5) to [short, -, o-, l=input] (-2,-0.5) 
     |- (opamp.+)
    (opamp.-) |- (0,1.5) -| (opamp.out)
     to [R, *-] (3,0)
@@ -119,18 +119,21 @@ All parts were soldered using lead-free solder and afterwards the PCB was cleane
  \draw
    (0,0.5) to [short] (0,2)
      to [short, -o] (4,2)
-   (0,-0.5) to [short] (0,-2)
-     to [short, -o] (4,-2)
+   (0,-0.5) to [short,-*] (0,-1)
+     to [short, -o] (1,-1)
+   (0,-1) to [C, -*] (0,-2)
    (3.5,2) to [short, *-] (3.5,0)
-     to [C] (3.5,-1)
-     to [C, *-*] (3.5,-2)
-   (3.5,-1) to [short, -o] (4,-1);
+     to [C, -*] (3.5,-2)
+   (3.5,-2) to [short, -o] (4,-2)
+   (-1.5,-0.5) to [full Zener diode, *-]  (-1.5,-1.5)
+   (-1.5,-2) to [full Zener diode] (-1.5,-1)
+   (-1.5,-2) to [short] (3.5,-2);
  \draw (4,0) node [right] {Output};
  \draw (4,2) node [right] {$V_+$};
- \draw (4,-1) node [right] {Ground};
- \draw (4,-2) node [right] {$V_-$};
+ \draw (4,-2) node [right] {Ground};
+ \draw (1,-1) node [right] {$V_-$};
  \end{circuitikz}
- \caption{The isolation circuit used. Each electrode was connected to its own circuit at the ``Input'' terminal.}
+ \caption{The isolation circuit used.}
  \label{fig:circuit_opamp}
 \end{figure}
 The wire connecting the circuit to the electrode was bare copper. The soldering was aided by S39 flux, an acidic solution used to etch the top layer of the electrode where it is to be soldered and secure a both mechanically and electrically strong connection. 
