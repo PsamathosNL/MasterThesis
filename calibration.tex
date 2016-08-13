@@ -21,12 +21,12 @@ In the remainder of this chapter, the translation set-up is described, followed 
 \section{Calibration method}
 In order to verify the expected results with reality, the following calibration method was devised. 
 A metal rod was used to simulate the electron beam. It was brought to a voltage equal to the beam potential $U_b$ described in equation \ref{eq:vbeamrho} and the current was varied to accommodate a range of currents expected from the electron gun. %Although the current has no direct effect on the measured values, the sudden change in current creates a large induction that introduces noise in the measurement. Other position monitor designs \textcolor{red}{REF!} rely on this effect specifically as their method of operation. 
-The beam potential $U_b$ was also varied to determine any dependencies of the position monitor's behaviour on the charge density inside. Then, the response of the four electrodes was measured for a range of positions.
+The beam potential $U_b$ was also varied to determine any dependencies of the position monitor's behaviour on the charge density of the beam. Then, the response of the four electrodes was measured for a range of positions.
 
 \subsection{Translation}
 \label{sec:calibration/translation}
-The beam position monitor must be accurately moved with respect to the rod and the rotation of the BPM with respect to the rod axis must be controlled in order for the rod and BPM axes to be aligned.
-In the setup shown in figure \ref{fig:schem_translation}, the BPM was held by a metal holder that was firmly placed on a 2-axis translation stage. This allowed the monitor to be moved with up to \SI{10}{\micro\meter} accuracy with respect to the rod. The rod was kept in a fixed position.
+The BPM must be accurately moved with respect to the rod. Furthermore, the rotation of the BPM with respect to the rod axis must be controlled in order for the rod and BPM axes to be aligned.
+In the setup shown in figure \ref{fig:schem_translation}, the BPM was held by a metal holder that was firmly placed on a 2-axis translation stage. This allowed the monitor to be moved in the transverse plane with up to \SI{10}{\micro\meter} accuracy. The rod was kept in a fixed position.
 The BPM was secured by two sets (one at the entry point of the beam into the BPM and on at the exit) of four screws, allowing control over the rotation of the sensor body. The BPM could be moved until the rod was touching the isolation of the sensing electrodes. 
 In order to determine the center position, the BPM was moved to the extremes\footnote{As the rod could bend, the extremes were taken to be ``the point at which changing the position no longer changed the output of the electrodes''.} in the Y-direction, and the positions were noted. The average of the two were taken to be the center and the BPM was then positioned in this position. Then the X-axis extremes were noted and the process was repeated until the values for the center positions converged. This gave a measurement of the center position with \SI{150}{\micro\meter} precision.
 \begin{figure}[H]
@@ -37,16 +37,20 @@ In order to determine the center position, the BPM was moved to the extremes\foo
 \end{figure}
 
 \subsection{Rod control}
-As this is a simulation of an electron beam from a source that was not used for an extended time, the actual values of electron current, charge density etc. are not exactly known. Therefore the calibration method is designed to simulate a range of possible values for these variables. 
-The simulation of the electron beam is achieved using the schematic seen in figure \ref{fig:circuitsetup}. 
+The calibration method is designed to simulate a range of possible values for the charge density and electron current. 
+As mentioned before, the electron beam was mimicked by a metal rod of the same diameter (2\,mm). This rod was suddenly brought to the voltage $U_b$, that corresponds to the voltage at the edge of the electron beam. Also, a current equal to the beam current was supplied through the rod.
+After a pulse time corresponding to one electron beam pulse \red{I don't know how to say this nicely) the voltage and current were dropped to zero. This was achieved using the setup seen in figure \ref{fig:circuitsetup}.
 
 \begin{figure}[h]
 \centering
 \input{Pictures/electrictikz}
-\caption{A schematic showing the electrical circuit controlling the rod}
+\caption{Circuit diagram of the system used to produce the excitation current through the rod.}
 \label{fig:circuitsetup}
 \end{figure}
 
+In the setup, a capacitor $C$ (\SI{1000}{\micro\farad}) was charged to the beam voltage $U_b$ using a high-voltage DC power supply via a resistor $R_\text{charge}$ (14\,\k$\Omega$) to limit the current drawn from the power supply.
+A high-voltage switch (Behlke model \red{xxx}) was used to to discharge the capacitor via the rod and a resistor $R$. The resistor $R$ (between 300 and 1200\,$\Omega$ determines the current for a set beam voltage.
+%---------- work in progress -----------
 The potential of the beam, $U_b$, as given in equation \ref{eq:vbeamrho} was set by changing $U_\text{set}$ to that value, typically between 600\,V and 1200\,V. The capacitor $C$ was placed to even out the current drawn from the power supply, having a resistor $R_\text{charge}$ to limit the charging current. The capacitor used was \SI{1000}{\micro\farad}, the charging resistor was \SI{14}{\kilo\ohm}.
 The part labelled ``rod'' is a brass cylinder used to simulate the electron beam. The radius was chosen to correspond to the electron beam radius ($r_b$, \mm{1}), the length (20\,cm) was chosen for construction ease.
 The resistor $R$ that connects the rod to ground was chosen to achieve currents in the same range as the electron current. The value for this resistor was between 300 and 1200 $\Omega$, depending on the desired current and voltage to be simulated. The resistance of the rod (about 12.6 m$\Omega$)can be neglected.
