@@ -36,10 +36,10 @@ In order to determine the center position, the BPM was moved to the extremes\foo
 \label{fig:schem_translation}
 \end{figure}
 
-\subsection{Rod control}
+\subsection{Excitation system}
 The calibration method is designed to simulate a range of possible values for the charge density and electron current. 
 As mentioned before, the electron beam was mimicked by a metal rod of the same diameter (2\,mm). This rod was suddenly brought to the voltage $U_b$, that corresponds to the voltage at the edge of the electron beam. Also, a current equal to the beam current was supplied through the rod.
-After a pulse time corresponding to one electron beam pulse \red{I don't know how to say this nicely) the voltage and current were dropped to zero. This was achieved using the setup seen in figure \ref{fig:circuitsetup}.
+After a pulse time corresponding to one electron beam pulse (\SI{10}{\micro\second} the voltage on and current through the rod were dropped to zero. This was achieved using the setup seen in figure \ref{fig:circuitsetup}.
 
 \begin{figure}[h]
 \centering
@@ -48,22 +48,26 @@ After a pulse time corresponding to one electron beam pulse \red{I don't know ho
 \label{fig:circuitsetup}
 \end{figure}
 
-In the setup, a capacitor $C$ (\SI{1000}{\micro\farad}) was charged to the beam voltage $U_b$ using a high-voltage DC power supply via a resistor $R_\text{charge}$ (14\,\k$\Omega$) to limit the current drawn from the power supply.
-A high-voltage switch (Behlke model \red{xxx}) was used to to discharge the capacitor via the rod and a resistor $R$. The resistor $R$ (between 300 and 1200\,$\Omega$ determines the current for a set beam voltage.
-%---------- work in progress -----------
-The potential of the beam, $U_b$, as given in equation \ref{eq:vbeamrho} was set by changing $U_\text{set}$ to that value, typically between 600\,V and 1200\,V. The capacitor $C$ was placed to even out the current drawn from the power supply, having a resistor $R_\text{charge}$ to limit the charging current. The capacitor used was \SI{1000}{\micro\farad}, the charging resistor was \SI{14}{\kilo\ohm}.
-The part labelled ``rod'' is a brass cylinder used to simulate the electron beam. The radius was chosen to correspond to the electron beam radius ($r_b$, \mm{1}), the length (20\,cm) was chosen for construction ease.
-The resistor $R$ that connects the rod to ground was chosen to achieve currents in the same range as the electron current. The value for this resistor was between 300 and 1200 $\Omega$, depending on the desired current and voltage to be simulated. The resistance of the rod (about 12.6 m$\Omega$)can be neglected.
-The switch was a Behlke High-voltage switch, rated up to 25kV.
+In the setup, a capacitor $C$ (\SI{1000}{\micro\farad}) was charged to the beam voltage $U_b$ (between 600\,V and 1200\,V) using a high-voltage DC power supply via a charging resistor $R_\text{charge}$ (14\,\k$\Omega$) to limit the current drawn from the power supply.
+A high-voltage switch (Behlke model \red{xx}) was used to to discharge the capacitor via the rod and a discharging resistor $R$. The resistor $R$ (between 300 and 1200\,$\Omega$) determines the current for a set beam voltage.
+The characteristic RC-time of the discharging system is so large that the voltage drop over C during the current pulse of \SI{10}{\micro\second} can be neglected.
+The rod was 20\,cm long to avoid any end effects or effects of the wires connected to it. The resistance of the rod (about 12.6\,m$\Omega$) was neglected.
 
-\section{Signal characteristics}
+% some part about excitation pulse maybe?
+%
+\section{Electrode response}
 \label{sec:calibration/signal}
-The sensor plates are brought to a certain voltage by the presence of the electron beam, but if the voltage is measured, the charge will flow out from the plate to ground (or the other way around, depending on your definitions) through the sensor\red{citation needed}. Normally, the signal source has either an isolated output \red{high output impedance? Low? What does isolated output mean?} or a large capacity for charge so the signal is not lost through the sensor. In our case, the bare plates have a capacity in the order of \SI{10}{\pico\farad}. To realize how little this is, a typical \SI{50}{\ohm} input would completely drain this in typically \SI{1.5}{\nano\second}.
+As discussed before, any charge (density) inside the BPM induces an electric potential at the electrodes. There are a number of characteristics and distortions in the potential of the plates that are discussed in this section.
+In order to measure the potential, the electrode needs to be connected to a measurement device, which results in charge flowing through the device and consequently a drop in the potential of the electrodes.
+The time it takes for the potential of the electrode to drop to near-zero is approximately three times the characteristic RC-time where R is the input impedance of the measurement device and C is the capacitance of the pickup electrode to ground. In our system, the capacitance to ground is about 10\,pF. Using a 50\,$\Omega$ measurement device, the potential drops to near-zero in 1.5\,ns.
+The electrode capacitance can not be changed and externally adding a sufficient parasitic capacitance to increase it would drastically lower the electrical potential. Therefore, the input impedance of the measurement system must be increased.
+A buffer circuit as described in section \ref{sec:design/circuit} was used to limit the current drawn by measurement devices. The circuit as a whole has an input impedance of around 10\,M$\Omega$, increasing the RC-time to around \SI{10}{\micro\second} regardless of the impedance of the measurement device used.
+Altough the potential drops significantly during a single pulse of the pFEL electron gun, this is slow enough that information can still be extracted.
 
-To counteract this, an isolating circuit was added close to the sensor with an input impedance of $10^{12}\,\Omega$. For more information on this circuit, see \ref{sec:design/circuit}. Using this system, the RC-time becomes 1ms. This is workable, but still significant. The signal is therefore suspected to show an exponential decay over time as the charge leaks away. Therefore, the signal should be measured as close to the beam arrival time ($t=0$) as possible.
+The buffer circuit does introduce a distortion to the signal. Since the buffer electronics have a limited bandwidth, the fast rise in potential at the input of the circuit creates a damped oscillation at the output.
 
-The sudden onset of the beam current induces a large change in the created magnetic field, in turn creating a short-lived current near $t=0$ and near the end of the electron beam ($t=\tau_b$). This has not been taken into account in the theory as it is not the method this position monitor has been built to use. However, as the isolation circuits have limited bandwidths, The sudden impulse creates an oscillation in the output signal.
-Another characteristic is the offset caused by the electronics. The amplifier that was used has no internal balancing mechanism. This causes the output signal to have a non-zero value ($U_{offset}$)when the input signal is zero. This could be counteracted by using the offset pins on the LT-1122 \cite{LT1122} but this would introduce eight more cables to run through the system and this option was omitted. The offset is neglected during signal analysis.
+%The sudden onset of the beam current induces a large change in the created magnetic field, in turn creating a short-lived current near $t=0$ and near the end of the electron beam ($t=\tau_b$). This has not been taken into account in the theory as it is not the method this position monitor has been built to use. However, as the isolation circuits have limited bandwidths, The sudden impulse creates an oscillation in the output signal.
+Another distortion of the signal is the offset caused by the electronics. The amplifier that was used has no internal balancing mechanism. This causes the output signal to have a non-zero value ($U_{offset}$)when the input signal is zero. This could be counteracted by using the offset pins on the LT-1122 \cite{LT1122}, but this option was not pursued as this would nearly double the required cables through the vacuum tube. Instead this offset was compensated for in the post-processing of the measured signals.
 
 \begin{figure}[H]
 \centering
