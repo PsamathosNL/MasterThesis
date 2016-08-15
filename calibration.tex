@@ -69,20 +69,22 @@ The buffer circuit does introduce a distortion to the signal. Since the buffer e
 %The sudden onset of the beam current induces a large change in the created magnetic field, in turn creating a short-lived current near $t=0$ and near the end of the electron beam ($t=\tau_b$). This has not been taken into account in the theory as it is not the method this position monitor has been built to use. However, as the isolation circuits have limited bandwidths, The sudden impulse creates an oscillation in the output signal.
 Another distortion of the signal is the offset caused by the electronics. The amplifier that was used has no internal balancing mechanism. This causes the output signal to have a non-zero value ($U_{offset}$)when the input signal is zero. This could be counteracted by using the offset pins on the LT-1122 \cite{LT1122}, but this option was not pursued as this would nearly double the required cables through the vacuum tube. Instead this offset was compensated for in the post-processing of the measured signals.
 
-\begin{figure}[H]
-\centering
+%\begin{figure}[H]
+%\centering
 %\input{Pictures/signaltikz2}
-\includegraphics[width=300pt]{signalex.pdf}
-\caption{\red{CHANGE X-axis to have beam arrive at $t=0$}A sketch showing the signal characteristics; non-zero voltage at $t<0$, then rapidly fluctuating signal followed by exponential decay and a sudden drop at $t=\tau_b$ (not to scale).}
-\label{fig:signalex}
-\end{figure}
+%\includegraphics[width=300pt]{signalex.pdf}
+%\caption{\red{CHANGE X-axis to have beam arrive at $t=0$}A sketch showing the signal characteristics; non-zero voltage at $t<0$, then rapidly fluctuating signal followed by exponential decay and a sudden drop at $t=\tau_b$ (not to scale).}
+%\label{fig:signalex}
+%\end{figure}
 
-
+% Introduce how the signals are handled. How do I go from a temporal signal to a number?
+% I use an algorithm that measures the offset before the peak, neglects the peak itself and averages over the time afterwards. However, this is mostly empirical. I know it works way better than measuring "by hand" but it's hard to say why exactly without presenting a lot of data, some of which is not saved anywhere.
 
 \section{Results}
+In this section, the results of the calibration are presented. First, a measurement was carried out to determine the extent of the assumptions made in the theoretical model. Second, the response of the system to different displacements was measured at various values for $U_b$ and $I$ (through $R$).
 
 \subsection{Linearity}
-Firstly, a measurement was carried out to determine the extent of the assumptions made in the theoretical model. The most important assumption was that the displacement $d$ was small. The coaxial approximation and the Taylor approximation were both depending on this. The displacement was increased as much as the set-up allowed and the response from the sensors was recorded at various positions. The displacement was then calculated without normalization. 
+The most important assumption was that the displacement $d$ was small. The coaxial approximation and the Taylor approximation were both depending on this. The displacement was increased as much as the set-up allowed and the response from the sensors was recorded at various positions. The displacement was then calculated without normalization. 
 \begin{figure}[h]
 \centering
 \includegraphics[width=10cm]{linearitymeasref.pdf}
