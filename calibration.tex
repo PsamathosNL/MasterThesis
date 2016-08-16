@@ -79,12 +79,14 @@ Another distortion of the signal is the offset caused by the electronics. The am
 
 % Introduce how the signals are handled. How do I go from a temporal signal to a number?
 % I use an algorithm that measures the offset before the peak, neglects the peak itself and averages over the time afterwards. However, this is mostly empirical. I know it works way better than measuring "by hand" but it's hard to say why exactly without presenting a lot of data, some of which is not saved anywhere.
+In order to negate distortions, the potential of an electrode is averaged over time. This average is started after the initial peak at beam arrival and stopped as soon as the exponential decay becomes apparent. The exact time values are determined empirically. The measured offset (time-average of the potential before beam arrival) is subtracted from the measured average potential to give the actual result.
 
 \section{Results}
 In this section, the results of the calibration are presented. First, a measurement was carried out to determine the extent of the assumptions made in the theoretical model. Second, the response of the system to different displacements was measured at various values for $U_b$ and $I$ (through $R$).
 
-\subsection{Linearity}
-The most important assumption was that the displacement $d$ was small. The coaxial approximation and the Taylor approximation were both depending on this. The displacement was increased as much as the set-up allowed and the response from the sensors was recorded at various positions. The displacement was then calculated without normalization. 
+\subsection{Extent of assumptions}
+The most important assumption was that the displacement $d$ was small. The coaxial approximation and the Taylor approximation were both depending on this. The displacement was increased as much as the set-up allowed and the potential of the electrodes was recorded at various positions. As only the extent of the linearity of the difference over sum is of interest here, no normalization was carried out.
+\red{FIRST ADD MEASUREMENTS OF THE TWO ELECTRODES, THEN ADD THE DOS}.
 \begin{figure}[h]
 \centering
 \includegraphics[width=10cm]{linearitymeasref.pdf}
