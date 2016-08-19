@@ -1,7 +1,6 @@
 \chapter{Design}
 \message{This is the start of the design chapter}
 \label{sec:design}
-% This section is being re-written!!
 In this chapter the design requirements will be presented and the design of the Beam Position Monitor (BPM) and the guiding system around it will be globally explained. Afterwards the different parts of the diagnostic system (BPM + guiding system) will be discussed in detail.
 
 \section{Design requirements}
@@ -23,7 +22,7 @@ However, even when a surface is smooth there will still be water vapour from the
 %These would then slowly evaporate when in the vacuum, reducing the quality of the vacuum for the time they are there. The pumping down time may become longer than the experiment allows. \textcolor{red}{REF?}
 To evaporate these, the vacuum chamber is generally heated to between \SI{100}{\degreeCelsius} and \SI{250}{\degreeCelsius}. This procedure, generally known as ``bake-out'', increases the evaporation rate, consequently increasing the rate at which water vapour and other gases are pumped out of the vacuum chamber.
 
-Therefore, the materials used in the beam position monitor must fulfill the following requirements. Firstly, their vapour pressure must be extremely low. Secondly, the materials must be able to withstand temperatures of up to \SI{150}{\degreeCelsius}. These two constraints should allow the system to reach a workable vacuum pressure of $5\cdot 10^{-8}$ within one week of pumping and bake-out. \footnote{ \red{I put the ``one week until pressure x'' here to have a measurable requirement. If I just say ``low'' vapour pressure, I don't know at the end of the line whether my design was good enough} }
+Therefore, the materials used in the beam position monitor must fulfill the following requirements. Firstly, their vapour pressure must be extremely low. Secondly, the materials must be able to withstand temperatures of up to \SI{150}{\degreeCelsius}. These two constraints should allow the system to reach a workable vacuum pressure of $5\cdot 10^{-8}$ within one week of pumping and bake-out.\footnote{\red{I put the ``one week until pressure x'' here to have a measurable requirement. If I just say ``low'' vapour pressure, I don't know at the end of the line whether my design was good enough}}
 %PLACE IN AN APPENDIX ON THE CLEANING PROCEDURE: The diagnostics system must be cleaned thoroughly to make sure no contaminants are present, so the materials used must also be resistant to water, ultrasonic cleaning methods and cleaning agents.
 
 \subsection{Size and shape constraints}
@@ -67,9 +66,9 @@ The sensor body features four circular surfaces that slide through the guidance 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=220 pt]{renderfull4.png}
-  \includegraphics[width=220 pt]{rendersection1.png}
-  \caption{\red{REDO RENDER ON THE RIGHT} Renders of the final design. The left figure shows the PCB on the outside but also a set of screws that could be used to clamp a cable instead of using the PCB. On the right figure the position monitor has been cut in half, the location of the sensor electrodes can be seen at the top.}
+  \includegraphics[width=220 pt]{finalrenderfull.png}
+  \includegraphics[width=220 pt]{finalrendercut.png}
+  \caption{Renders of the final design. On the right figure the position monitor has been cut in half, the sensor electrodes are slid out partly}
   \label{fig:designfinal}
 \end{figure}
 
