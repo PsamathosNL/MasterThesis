@@ -13,10 +13,10 @@ This report describes a sensor system that is able to measure the transverse loc
 
 \section{The photonic Free Electron Laser}
 %CFEL --> problems with high power beams --> pFEL multiple beams --> diagnostic is missing --> This report describes solution
-Cherenkov Free Electron Lasers (CFEL's) have been a field of study for a long time \red{citations}. However, generally the output power is limited due to the nature of the Cherenkov radiation.
-In order to increase the power radiated, the electron beam current must be increased. The beam energy in CFEL's is typically low (\red{how low?}) \red{citations}, while using a high beam current. Consequently a high current density leads to a strong coulomb repulsion between electrons which makes it difficult to generate and transport such a beam.
+Cherenkov Free Electron Lasers (CFEL's) have been a field of study for a long time \cite{garate1987cherenkov}/cite{walsh1977cerenkov}. However, generally the output power is limited due to the nature of the Cherenkov radiation.
+In order to increase the power radiated, the electron current density must be increased. Consequently a high current density leads to a strong coulomb repulsion between electrons which makes it difficult to generate and transport such a beam.
 
-In order to overcome these problems, the photonic Free-Electron laser was developed. Here, the homogeneous dielectric medium is replaced by a metallic photonic crystal (PC)\footnote{Although a dielectric PC could also be used, but the higher thermal conductivity and \red{not-chargeability} make metal a more convenient choice.}.
+In order to overcome these problems, the photonic Free-Electron laser was developed. Here, the homogeneous dielectric medium is replaced by a metallic photonic crystal (PC)\footnote{Although a dielectric PC could also be used, but the higher thermal conductivity and easy charge transport make metal a more convenient choice.}.
 The merits of the PC as a Cherenkov medium have been shown in simulations, possibly allowing a continuously tunable source with high output power.
 The PC also allows multiple electron beams to contribute mostly to the same eigenmode in the photonic crystal, effectively negating the biggest drawback of the CFEL.\cite{DenisMultiBeam}.
 A proof-of-principle set-up has been built \cite{Denis} but e-beam diagnostics were not implemented. The work presented in this report remedies this problem.
@@ -27,8 +27,8 @@ Several methods exist to detect properties of the electron beam. The properties 
 Here, we briefly present advantages and disadvantages of some present techniques.
 
 \paragraph{Optical methods}
-In certain materials, the kinetic energy of the electrons is absorbed and converted to optical photons by a variety of effects \red{citation}. These can then be imaged and thus the beam profile can be determined. A well known example of a material that has this property is phosphor. It is used to build the CRT-type screens where electrons are scanned over a glass surface that is coated with phosphor.
-Another, more sturdy material that has this property is a Cerium-doped YAG crystal (Ce:YAG). \red{citation needed}
+In certain materials, the kinetic energy of the electrons is absorbed and converted to optical photons by a variety of effects \cite{leo1994techniques}. These can then be imaged and thus the beam profile can be determined. A well known example of a material that has this property is phosphor. It is used to build the CRT-type screens where electrons are scanned over a glass surface that is coated with phosphor.
+Another, more sturdy material that has this property is a Cerium-doped YAG crystal (Ce:YAG).
 However, although the kinetic energy is not very high in this system (15\,keV), the current is relatively high at up to \SI{2}{\ampere}. This current is spread over a beam with a radius of \mm{1}, giving the surface it hits a power density of around $10\,\text{kW\,mm}^{-1}$
 This is significantly more than any of the optical methods are made for. The surface melts and partly evaporates shortly after exposure to this electron beam. 
 The effects can be seen in figure \ref{fig:brokenyag}. Shown are the remains of a Ce:YAG screen with a layer of titanium to block the glow from the hot cathode. The metal has been molten over a large part of the surface and the YAG crystal has clearly visible damage where the beam hit. 
@@ -56,7 +56,7 @@ However, our simulations (see appendix \ref{sec:heatsims}) have shown that when 
 Another option is a beam position monitor (BPM). This is a device generally used for pulsed ion or electron beams. It consists of a set of electrodes (metal plates) parallel to the beam path. A passing electron pulse induces a voltage on the electrodes. The voltages of four electrodes distributed over 360 degrees are processed to produce signals that are proportional to the diplacement of the center-of-charge from the axis of the sensor and proportional to the beam current (or pulse charge).
 As BPM's rely on capacitive coupling and not on impact measurements, the beam can continue undisturbed. Therefore, BPM's are so-called non-intercepting detectors.
 
-Although this is a viable method for measuring high-power electron beams, it is generally only used for pulsed beams, while the pFEL relies on a quasi-static beam. \red{citation needed}.
+Although this is a viable method for measuring high-power electron beams, it is generally only used for pulsed beams, while the pFEL relies on a quasi-static beam.
 
 In this report the design of a BPM optimized for operation in a pFEL is explained.
 By utilizing the principles of a set of capacitive pick-up electrodes, the beam is not intercepted. This is a huge advantage as the detecting method is no longer limiting the current density of the beam as is the case with intercepting methods (screens, faraday cup) where the energy from the electron beam is turned to destructive heat. 
